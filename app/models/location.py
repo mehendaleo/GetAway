@@ -13,6 +13,11 @@ class Location(db.Model):
     description = db.Column(db.String(1000), nullable=False)
     price = db.Column(db.String(30), nullable=False)
 
+    user = db.relationship('User', back_populates='location')
+    image = db.relationship('Image', back_populates='location', cascade="all, delete-orphan")
+    review = db.relationship('Review', back_populates='location', cascade="all, delete-orphan")
+
+
 
     def to_dict(self):
         return {

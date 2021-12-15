@@ -8,6 +8,10 @@ class Review(db.Model):
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
     content = db.Column(db.Text, nullable=False)
 
+    user = db.relationship('User', back_populates='review')
+    location = db.relationship('Location', back_populates='review')
+
+
     def to_dict(self):
         return {
             'user_id': self.user_id,

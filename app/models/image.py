@@ -5,7 +5,12 @@ class Image(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     image_url = db.Column(db.String(1000), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
+
+    location = db.relationship('Location', back_populates='image')
+    user = db.relationship('User', back_populates='image')
+
 
 
     def to_dict(self):

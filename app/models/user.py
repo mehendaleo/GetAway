@@ -15,6 +15,10 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), nullable=False, default=db.func.now(), onupdate=db.func.now())
 
+    location = db.relationship('Location', back_populates='user')
+    image = db.relationship('Image', back_populates='user')
+    review = db.relationship('Review', back_populates='user')
+
     @property
     def password(self):
         return self.hashed_password
