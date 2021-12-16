@@ -232,6 +232,29 @@ def seed_locations():
         price = '476'
     )
 
+    db.session.add(location1)
+    db.session.add(location2)
+    db.session.add(location3)
+    db.session.add(location4)
+    db.session.add(location5)
+    db.session.add(location6)
+    db.session.add(location7)
+    db.session.add(location8)
+    db.session.add(location9)
+    db.session.add(location10)
+    db.session.add(location11)
+    db.session.add(location12)
+    db.session.add(location13)
+    db.session.add(location14)
+    db.session.add(location15)
+    db.session.add(location16)
+    db.session.add(location17)
+    db.session.add(location18)
+    db.session.add(location19)
+    db.session.add(location20)
+
+    db.session.commit()
+
 
 def undo_locations():
     db.session.execute('TRUNCATE locations RESTART IDENTITY CASCADE;')

@@ -9,7 +9,7 @@ def seed_users():
         first_name='Demo',
         last_name='User',
         email='demo@demolition.io',
-        propic_url='https://media.discordapp.net/attachments/920737842508988446/920737856476053514/unknown.png',
+        propic_url='https://res.cloudinary.com/duscvhetx/image/upload/v1639673071/Users/Demo_bgcsbd.png',
         password='password'
     )
 
@@ -17,7 +17,7 @@ def seed_users():
         first_name='Patrik',
         last_name='Laine',
         email=fake.email(),
-        propic_url='https://images-ext-2.discordapp.net/external/AOSLNGcZ_1JXYsx84qhjNWpvjeIF45iQaEWfarcuYjU/https/cdn-headshots.theathletic.com/nhl/30003131.png',
+        propic_url='https://res.cloudinary.com/duscvhetx/image/upload/v1639673071/Users/Laine_fiolnx.png',
         password=fake.password()
     )
 
@@ -25,7 +25,7 @@ def seed_users():
         first_name='Bernardo',
         last_name='Silva',
         email=fake.email(),
-        propic_url='https://images-ext-1.discordapp.net/external/HUqISE9ocGTI9AuLLWjlUoJdW3l05HnboGA_S_1b3g4/https/img.uefa.com/imgml/TP/players/3/2020/324x324/250059115.jpg',
+        propic_url='https://res.cloudinary.com/duscvhetx/image/upload/v1639673066/Users/Bernardo_rbhy5d.jpg',
         password=fake.password()
     )
 
@@ -33,7 +33,7 @@ def seed_users():
         first_name='Joey',
         last_name='Votto',
         email=fake.email(),
-        propic_url='https://images-ext-1.discordapp.net/external/6fGPScyk6i5zvyxtgXndsC4KB6AcqSfaT_IpJZZibj8/https/cdn1.thecomeback.com/wp-content/uploads/2017/05/121142495-832x447.jpg',
+        propic_url='https://res.cloudinary.com/duscvhetx/image/upload/v1639673071/Users/Votto_tftxmw.jpg',
         password=fake.password()
     )
 
@@ -41,7 +41,7 @@ def seed_users():
         first_name='Joe',
         last_name='Burrow',
         email=fake.email(),
-        propic_url='https://images-ext-2.discordapp.net/external/iXei7VK0tCKtZbhWBIbrqtacvnlW9WpvOjeGx68h0v0/https/profootballtalk.nbcsports.com/wp-content/uploads/sites/25/2021/01/USATSI_15214405-e1611927000462.jpg?width=1202&height=676',
+        propic_url='https://res.cloudinary.com/duscvhetx/image/upload/v1639673071/Users/Burrow_j0tovi.jpg',
         password=fake.password()
     )
 
