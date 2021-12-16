@@ -1,18 +1,55 @@
 from app.models import db, User
+from faker import Faker
 
+fake = Faker()
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        first_name='Demo',
+        last_name='User',
+        email='demo@demolition.io',
+        propic_url='https://res.cloudinary.com/duscvhetx/image/upload/v1639673071/Users/Demo_bgcsbd.png',
+        password='password'
+    )
+
+    user1 = User(
+        first_name='Patrik',
+        last_name='Laine',
+        email=fake.email(),
+        propic_url='https://res.cloudinary.com/duscvhetx/image/upload/v1639673071/Users/Laine_fiolnx.png',
+        password=fake.password()
+    )
+
+    user2 = User(
+        first_name='Bernardo',
+        last_name='Silva',
+        email=fake.email(),
+        propic_url='https://res.cloudinary.com/duscvhetx/image/upload/v1639673066/Users/Bernardo_rbhy5d.jpg',
+        password=fake.password()
+    )
+
+    user3 = User(
+        first_name='Joey',
+        last_name='Votto',
+        email=fake.email(),
+        propic_url='https://res.cloudinary.com/duscvhetx/image/upload/v1639673071/Users/Votto_tftxmw.jpg',
+        password=fake.password()
+    )
+
+    user4 = User(
+        first_name='Joe',
+        last_name='Burrow',
+        email=fake.email(),
+        propic_url='https://res.cloudinary.com/duscvhetx/image/upload/v1639673071/Users/Burrow_j0tovi.jpg',
+        password=fake.password()
+    )
 
     db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(user1)
+    db.session.add(user2)
+    db.session.add(user3)
+    db.session.add(user4)
 
     db.session.commit()
 
