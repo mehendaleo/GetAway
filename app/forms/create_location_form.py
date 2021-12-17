@@ -3,7 +3,7 @@ from flask_wtf.recaptcha import validators
 from wtforms import IntegerField, StringField
 from wtforms.validators import DataRequired
 
-class CreateLocationForm(FlaskForm):
+class LocationForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
     city = StringField('city', validators=[DataRequired()])
     state = StringField('state', validators=[DataRequired()])

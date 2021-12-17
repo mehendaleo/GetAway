@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import Location, Image, db, location
-from app.forms import CreateLocationForm
+from app.forms import LocationForm
 
 location_routes = Blueprint('locations', __name__)
 
@@ -19,14 +19,17 @@ def locations():
 # @login_required
 def single_location(location_id):
     location = Location.query.get(location_id)
-    return location.to_dict()
+    if location:
+        return location.to_dict()
+    else:
+        return 'Location not found'
 
 
 # create new location
 @location_routes.route('/new', methods=['POST'])
 # @login_required
 def create_location():
-    form = CreateLocationForm()
+    form = LocationForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_location = Location(
@@ -72,9 +75,10 @@ def create_location():
 # @login_required
 def delete_location(location_id):
     location = Location.query.get(location_id)
-    db.session.delete(location)
-    db.session.commit()
-    return location.to_dict()
+    if location:
+        db.session.delete(location)
+        db.session.commit()
+        return 'Successfully deleted'
 
 
 # update single location
@@ -82,3 +86,15 @@ def delete_location(location_id):
 # @login_required
 def update_location(location_id):
     location = Location.query.get(location_id)
+    form = LocationForm()
+    if form.validate_on_submit():
+            location.city = form.data['city']
+            location.state = form.data['state']
+            location.country = form.data['country']
+            location.name = form.data['name']
+            location.amenities = form.data['amenities']
+            location.description = form.data['description']
+            location.price = form.data['price']
+
+            db.session.commit()
+            return location.to_dict()
