@@ -67,4 +67,18 @@ def create_location():
         return 'bad data'
 
 
+# delete single location
+@location_routes.route('/<int:location_id>/delete', methods=['DELETE'])
+# @login_required
+def delete_location(location_id):
+    location = Location.query.get(location_id)
+    db.session.delete(location)
+    db.session.commit()
+    return location.to_dict()
 
+
+# update single location
+@location_routes.route('/<int:location_id/update>', methods=['PUT'])
+# @login_required
+def update_location(location_id):
+    location = Location.query.get(location_id)
