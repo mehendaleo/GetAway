@@ -21,6 +21,7 @@ class Location(db.Model):
 
     def to_dict(self):
         return {
+            'id': self.id,
             'user_id': self.user_id,
             'city': self.city,
             'state': self.state,
@@ -28,5 +29,6 @@ class Location(db.Model):
             'name': self.name,
             'amenities': self.amenities,
             'description': self.description,
-            'price': self.price
+            'price': self.price,
+            'images': [image.to_dict_images() for image in self.image]
         }
