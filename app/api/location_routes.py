@@ -6,12 +6,14 @@ from app.forms import LocationForm
 location_routes = Blueprint('locations', __name__)
 
 
-# get all locations for discover
-@location_routes.route('/discover')
+# get all locations for explore
+@location_routes.route('/explore')
 # @login_required
 def locations():
     locations = Location.query.all()
-    return {'locations': [location.to_dict() for location in locations]}
+    return {
+        'locations': {location.to_dict()['id']: location.to_dict() for location in locations}
+    }
 
 
 # get single location for individual page
@@ -82,7 +84,7 @@ def delete_location(location_id):
 
 
 # update single location
-@location_routes.route('/<int:location_id/update>', methods=['PUT'])
+@location_routes.route('/<int:location_id>/update', methods=['PUT'])
 # @login_required
 def update_location(location_id):
     location = Location.query.get(location_id)

@@ -5,8 +5,11 @@ import { signUp } from '../../store/session';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
-  const [username, setUsername] = useState('');
+  // const [username, setUsername] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [propic_url, setPropic] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
@@ -15,20 +18,28 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(first_name, last_name, email, propic_url, password));
       if (data) {
         setErrors(data)
       }
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
   };
+
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
+  }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
+
+  const updatePropic = (e) => {
+    setPropic(e.target.value);
+  }
 
   const updatePassword = (e) => {
     setPassword(e.target.value);
@@ -50,12 +61,21 @@ const SignUpForm = () => {
         ))}
       </div>
       <div>
-        <label>User Name</label>
+        <label>First Name</label>
         <input
           type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
+          name='first_name'
+          onChange={updateFirstName}
+          value={first_name}
+        ></input>
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input
+          type='text'
+          name='last_name'
+          onChange={updateLastName}
+          value={last_name}
         ></input>
       </div>
       <div>
@@ -65,6 +85,15 @@ const SignUpForm = () => {
           name='email'
           onChange={updateEmail}
           value={email}
+        ></input>
+      </div>
+      <div>
+        <label>Profile Image URL</label>
+        <input
+          type='text'
+          name='profile'
+          onChange={updatePropic}
+          value={propic_url}
         ></input>
       </div>
       <div>
