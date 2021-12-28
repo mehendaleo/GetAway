@@ -28,14 +28,14 @@ def single_location(location_id):
 
 
 # create new location
-@location_routes.route('/new', methods=['GET', 'POST'])
+@location_routes.route('/new', methods=['POST'])
 # @login_required
 def create_location():
     form = LocationForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('outside validate')
+    # print('outside validate')
     if form.validate_on_submit():
-        print('inside validate')
+        # print('inside validate')
         new_location = Location(
             user_id = form.data['user_id'],
             city = form.data['city'],
@@ -47,6 +47,7 @@ def create_location():
             price = form.data['price'],
         )
         db.session.add(new_location)
+        db.session.commit()
 
         image1 = Image(
             image_url = form.data['image_url1'],
