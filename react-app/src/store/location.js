@@ -24,7 +24,7 @@ export const getAllLocationsThunk = () => async(dispatch) => {
 }
 
 //thunk to get single location
-export const
+// export const
 
 // reducer
 const initialState = {};
