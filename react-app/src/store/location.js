@@ -4,7 +4,7 @@ const GET_LOCATIONS = 'location/GET_LOCATIONS';
 
 // action creaters
 
-// action to get all locations for discover
+// action to get all locations for explore
 const getAllLocations = (locations) => ({
     type: GET_LOCATIONS,
     payload: locations
@@ -13,7 +13,7 @@ const getAllLocations = (locations) => ({
 
 // thunks
 
-// thunk to get all locations for discover
+// thunk to get all locations for explore
 export const getAllLocationsThunk = () => async(dispatch) => {
     const response = await fetch('/api/locations/explore');
     if (response.ok) {
@@ -23,9 +23,12 @@ export const getAllLocationsThunk = () => async(dispatch) => {
     }
 }
 
+//thunk to get single location
+export const
+
 // reducer
 const initialState = {};
-const locationReducer = (state = initialState, action) => {
+const location = (state = initialState, action) => {
     switch (action.type) {
         case GET_LOCATIONS: {
             const newState = {
@@ -40,4 +43,4 @@ const locationReducer = (state = initialState, action) => {
     }
 }
 
-export default locationReducer;
+export default location;
