@@ -31,24 +31,20 @@ export const getAllLocationsThunk = () => async(dispatch) => {
 
 // thunk to create a location
 export const createLocationThunk = (newLocation) => async(dispatch) => {
-    try {
-        const response = await fetch('/api/locations/new', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(newLocation)
-        });
-        if (response.ok) {
-            const location = await response.json();
-            dispatch(createLocation(location));
-        } else if (response.status < 500) {
-            const data = await response.json();
-            if (data.errors) return data.errors
-            else return 'Weird error'
-        } else {
-            return 'Server Error';
-        }
-    } catch (err) {
-        console.log(err);
+    const response = await fetch('/api/locations/new', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(newLocation)
+    });
+    if (response.ok) {
+        const location = await response.json();
+        dispatch(createLocation(location));
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) return data.errors
+        else return ['Weird error']
+    } else {
+        return ['Server Error'];
     }
 }
 
