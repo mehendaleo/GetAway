@@ -12,7 +12,7 @@ const getAllLocations = (locations) => ({
 });
 
 const createLocation = (location) => ({
-    type = ADD_LOCATION,
+    type: ADD_LOCATION,
     payload: location
 })
 

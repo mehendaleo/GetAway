@@ -1,15 +1,18 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import CreateLocationFormModal from './CreateLocationModal';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
+  const sessionUser = useSelector(state => state.session.user)
+
   return (
     <nav>
       <ul>
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+            GetAway
           </NavLink>
         </li>
         <li>
@@ -23,9 +26,7 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
+          <CreateLocationFormModal />
         </li>
         <li>
           <LogoutButton />
