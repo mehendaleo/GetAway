@@ -7,7 +7,7 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
-import Explore from './components/DiscoverPage/DiscoverPage';
+import Explore from './components/ExplorePage/Explore';
 import { authenticate } from './store/session';
 
 function App() {

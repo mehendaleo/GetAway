@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllLocationsThunk } from "../../store/location";
-import './DiscoverPage.css';
+import './Explore.css';
 
 const Explore = () => {
     const dispatch = useDispatch();
-    const locationsObj = useSelector(state => state.locationReducer)
+    const locationsObj = useSelector(state => state.location)
     const locations = Object.assign([], locationsObj)
 
     useEffect(() => {
