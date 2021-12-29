@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState, } from 'react';
 import ReactDOM from 'react-dom';
+import './modal.css'
 
 const ModalContext = React.createContext();
 
@@ -26,9 +27,9 @@ export const Modal = ({onClose, children}) => {
     if (!node) return null;
 
     return ReactDOM.createPortal(
-        <div>
-            <div onClick={onClose}></div>
-            <div>
+        <div id='modal'>
+            <div onClick={onClose} id='modal-background'></div>
+            <div id='modal-content'>
                 {children}
             </div>
         </div>,

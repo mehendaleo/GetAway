@@ -15,7 +15,7 @@ const Explore = () => {
     return (
         <div>
             {locations?.map(location => (
-                <div>
+                <div key={location.id}>
                     {location.name}
                 </div>
             ))}

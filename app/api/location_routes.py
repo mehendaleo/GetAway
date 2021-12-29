@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import Location, Image, db, location
+from app.models import Location, Image, db
 from app.forms import LocationForm
 
 location_routes = Blueprint('locations', __name__)
@@ -33,7 +33,9 @@ def single_location(location_id):
 def create_location():
     form = LocationForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    # print('outside validate')
     if form.validate_on_submit():
+        # print('inside validate')
         new_location = Location(
             user_id = form.data['user_id'],
             city = form.data['city'],
@@ -45,6 +47,7 @@ def create_location():
             price = form.data['price'],
         )
         db.session.add(new_location)
+        db.session.commit()
 
         image1 = Image(
             image_url = form.data['image_url1'],
