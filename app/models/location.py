@@ -32,3 +32,13 @@ class Location(db.Model):
             'price': self.price,
             'images': [image.to_dict_images() for image in self.image]
         }
+
+    def to_dict_search(self):
+        return {
+            'id': self.id,
+            'city': self.city,
+            'state': self.state,
+            'country': self.country,
+            'name': self.name,
+            'images': [image.to_dict_images() for image in self.image]
+        }

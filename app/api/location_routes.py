@@ -2,6 +2,8 @@ from flask import Blueprint, request
 from flask_login import login_required
 from app.models import Location, Image, db
 from app.forms import LocationForm, UpdateLocationForm
+from operator import or_
+from sqlalchemy import or_
 
 location_routes = Blueprint('locations', __name__)
 
@@ -111,3 +113,16 @@ def update_location(location_id):
         return location.to_dict()
     else:
         return "bad data"
+
+# location search route
+@location_routes.route('/<string:search>', methods=['GET'])
+# @login_required
+def location_search(search):
+    locations = Location.query.filter(
+        or_(
+            Location.city.ilike(f"%{search}%"),
+            Location.state.ilike(f"%{search}%"),
+            Location.country.ilike(f"%{search}%")
+        )
+    ).all()
+    return {'locations': [location.to_dict_search() for location in locations]}

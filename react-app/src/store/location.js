@@ -90,16 +90,11 @@ const initialState = {};
 const location = (state = initialState, action) => {
     switch (action.type) {
         case GET_LOCATIONS: {
-            // const newState = {
-            //     ...state,
-            //     ...action.payload.locations
-            // }
-            // return newState;
-            const allLocations = {};
-            for (let location in action.payload.locations) {
-                allLocations[location.id] = location
+            const newState = {
+                ...state,
+                ...action.payload.locations
             }
-            return allLocations;
+            return newState;
         }
         case ADD_LOCATION: {
             const newState = {
@@ -107,6 +102,18 @@ const location = (state = initialState, action) => {
                 [action.payload.id]: action.payload
             };
             return newState
+        }
+        case UPDATE_LOCATION: {
+            const newState = {
+                ...state,
+                [action.payload.id]: action.payload
+            };
+            return newState
+        }
+        case DELETE_LOCATION: {
+            const newState = {...state};
+            delete newState[action.payload];
+            return newState;
         }
         default: {
             return state;
