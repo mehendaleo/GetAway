@@ -1,9 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, StringField
+from wtforms import StringField
 from wtforms.validators import DataRequired
 
-class LocationForm(FlaskForm):
-    user_id = IntegerField('user_id', validators=[DataRequired()])
+class UpdateLocationForm(FlaskForm):
     city = StringField('city', validators=[DataRequired()])
     state = StringField('state', validators=[DataRequired()])
     country = StringField('country', validators=[DataRequired()])
@@ -11,6 +10,3 @@ class LocationForm(FlaskForm):
     amenities = StringField('amenities', validators=[DataRequired()])
     description = StringField('description', validators=[DataRequired()])
     price = StringField('price', validators=[DataRequired()])
-    image_url1 = StringField('image_url1', validators=[DataRequired()])
-    image_url2 = StringField('image_url2', validators=[DataRequired()])
-    image_url3 = StringField('image_url3', validators=[DataRequired()])
