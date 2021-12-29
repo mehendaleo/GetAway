@@ -83,7 +83,7 @@ def delete_location(location_id):
     if location:
         db.session.delete(location)
         db.session.commit()
-        return 'Successfully deleted'
+        return location.to_dict()
     else:
         return 'bad data'
 
@@ -98,7 +98,7 @@ def update_location(location_id):
     if form.validate_on_submit():
         print('--------- inside')
         location = Location.query.get(location_id)
-        
+
         location.city = form.data['city']
         location.state = form.data['state']
         location.country = form.data['country']

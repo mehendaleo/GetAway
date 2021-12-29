@@ -1,6 +1,8 @@
 // constants
 const GET_LOCATIONS = 'location/GET_LOCATIONS';
 const ADD_LOCATION = 'location/ADD_LOCATION';
+const UPDATE_LOCATION = 'location/UPDATE_LOCATION';
+const DELETE_LOCATION = 'location/DELETE_LOCATION';
 
 
 // action creaters
@@ -14,6 +16,16 @@ const getAllLocations = (locations) => ({
 const createLocation = (location) => ({
     type: ADD_LOCATION,
     payload: location
+});
+
+const updateLocation = (location) => ({
+    type: UPDATE_LOCATION,
+    payload: location
+});
+
+const deleteLocation = (location_id) => ({
+    type: DELETE_LOCATION,
+    payload: location_id
 })
 
 
@@ -27,7 +39,7 @@ export const getAllLocationsThunk = () => async(dispatch) => {
         dispatch(getAllLocations(locations));
         return locations;
     }
-}
+};
 
 // thunk to create a location
 export const createLocationThunk = (newLocation) => async(dispatch) => {
@@ -46,6 +58,31 @@ export const createLocationThunk = (newLocation) => async(dispatch) => {
     } else {
         return ['Server Error'];
     }
+};
+
+// thunk to update a location
+export const updateLocationThunk = (location) => async(dispatch) => {
+    const response = await fetch(`/api/locations/${location.location_id}/update`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(location)
+    });
+    if (response.ok) {
+        const editedLocation = await response.json();
+        dispatch(updateLocation(editedLocation));
+        return editedLocation;
+    }
+};
+
+// thunk to delete a location
+export const deleteLocationThunk = (location_id) => async(dispatch) => {
+    const response =  await fetch(`/api/locations/${location_id}/delete`, {
+        method: 'DELETE'
+    });
+    if (response.ok) {
+        const location = await response.json()
+        dispatch(deleteLocation(location.id))
+    }
 }
 
 // reducer
@@ -53,11 +90,16 @@ const initialState = {};
 const location = (state = initialState, action) => {
     switch (action.type) {
         case GET_LOCATIONS: {
-            const newState = {
-                ...state,
-                ...action.payload.locations
+            // const newState = {
+            //     ...state,
+            //     ...action.payload.locations
+            // }
+            // return newState;
+            const allLocations = {};
+            for (let location in action.payload.locations) {
+                allLocations[location.id] = location
             }
-            return newState;
+            return allLocations;
         }
         case ADD_LOCATION: {
             const newState = {
