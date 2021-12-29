@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import Location, Image, db, location
+from app.models import Location, Image, db
 from app.forms import LocationForm
 
 location_routes = Blueprint('locations', __name__)

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 // thunk import
 import { createLocationThunk } from '../../store/location';
@@ -8,6 +9,8 @@ import { createLocationThunk } from '../../store/location';
 const CreateLocationForm = ({ hideForm }) => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
+    const history = useHistory();
+
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [country, setCountry] = useState('');
@@ -44,6 +47,7 @@ const CreateLocationForm = ({ hideForm }) => {
         }
     };
 
+    // maybe add autocomplete to form?
     return (
         <div>
             <div>
@@ -51,13 +55,13 @@ const CreateLocationForm = ({ hideForm }) => {
                     Create a new location!
                 </div>
                 <form onSubmit={handleSubmit}>
-                    {/* <div className='create-error-container'>
+                    <div className='create-error-container'>
                         {errors.map((err, i) => (
                             <div key={i}>
                                 {err}
                             </div>
                         ))}
-                    </div> */}
+                    </div>
                     <div className='create-div'>
                         <div>
                             <input
