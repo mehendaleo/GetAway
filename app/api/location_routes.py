@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import Location, Image, db
-from app.forms import LocationForm
+from app.forms import LocationForm, UpdateLocationForm
 
 location_routes = Blueprint('locations', __name__)
 
@@ -84,22 +84,29 @@ def delete_location(location_id):
         db.session.delete(location)
         db.session.commit()
         return 'Successfully deleted'
+    else:
+        return 'bad data'
 
 
 # update single location
 @location_routes.route('/<int:location_id>/update', methods=['PUT'])
 # @login_required
 def update_location(location_id):
-    location = Location.query.get(location_id)
-    form = LocationForm()
+    form = UpdateLocationForm()
+    print('-------- outside')
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-            location.city = form.data['city']
-            location.state = form.data['state']
-            location.country = form.data['country']
-            location.name = form.data['name']
-            location.amenities = form.data['amenities']
-            location.description = form.data['description']
-            location.price = form.data['price']
+        print('--------- inside')
+        location = Location.query.get(location_id)
+        location.city = form.data['city']
+        location.state = form.data['state']
+        location.country = form.data['country']
+        location.name = form.data['name']
+        location.amenities = form.data['amenities']
+        location.description = form.data['description']
+        location.price = form.data['price']
 
-            db.session.commit()
-            return location.to_dict()
+        db.session.commit()
+        return location.to_dict()
+    else:
+        return "bad data"
