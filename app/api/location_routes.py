@@ -98,6 +98,7 @@ def update_location(location_id):
     if form.validate_on_submit():
         print('--------- inside')
         location = Location.query.get(location_id)
+        
         location.city = form.data['city']
         location.state = form.data['state']
         location.country = form.data['country']

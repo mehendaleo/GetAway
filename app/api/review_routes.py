@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import Review, db
-from app.forms import CreateReview
+from app.forms import CreateReview, UpdateReview
 
 review_routes = Blueprint('reviews', __name__)
 
@@ -32,3 +32,18 @@ def create_review():
     else:
         return 'bad data'
 
+# update a review
+@review_routes.route('/<int:review_id>/update', methods=['PUT'])
+# @login_required
+def update_review(review_id):
+    form = UpdateReview()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        review = Review.query.get(review_id)
+
+        review.content = form.data['content']
+
+        db.session.commit()
+        return review.to_dict()
+    else:
+        return 'bad data'
