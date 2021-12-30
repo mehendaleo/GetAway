@@ -30,7 +30,8 @@ class Location(db.Model):
             'amenities': self.amenities,
             'description': self.description,
             'price': self.price,
-            'images': [image.to_dict_images() for image in self.image]
+            'images': [image.to_dict_images() for image in self.image],
+            'user': self.user.to_dict()
         }
 
     def to_dict_search(self):

@@ -3,6 +3,7 @@ const GET_LOCATIONS = 'location/GET_LOCATIONS';
 const ADD_LOCATION = 'location/ADD_LOCATION';
 const UPDATE_LOCATION = 'location/UPDATE_LOCATION';
 const DELETE_LOCATION = 'location/DELETE_LOCATION';
+const SINGLE_LOCATION = 'location/SINGLE_LOCATION';
 
 
 // action creaters
@@ -12,6 +13,11 @@ const getAllLocations = (locations) => ({
     type: GET_LOCATIONS,
     payload: locations
 });
+
+const getSingleLocation = (location) => ({
+    type: SINGLE_LOCATION,
+    payload: location
+})
 
 const createLocation = (location) => ({
     type: ADD_LOCATION,
@@ -26,7 +32,7 @@ const updateLocation = (location) => ({
 const deleteLocation = (location_id) => ({
     type: DELETE_LOCATION,
     payload: location_id
-})
+});
 
 
 // thunks
@@ -40,6 +46,15 @@ export const getAllLocationsThunk = () => async(dispatch) => {
         return locations;
     }
 };
+
+export const getSingleLocationThunk = (id) => async(dispatch) => {
+    const response = await fetch(`/api/locations/${id}`);
+    if (response.ok) {
+        const location = await response.json();
+        dispatch(getSingleLocation(location));
+        return location;
+    }
+}
 
 // thunk to create a location
 export const createLocationThunk = (newLocation) => async(dispatch) => {
@@ -114,6 +129,11 @@ const location = (state = initialState, action) => {
             const newState = {...state};
             delete newState[action.payload];
             return newState;
+        }
+        case SINGLE_LOCATION: {
+            return {
+                ...action.payload
+            }
         }
         default: {
             return state;
