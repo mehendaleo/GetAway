@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import Explore from './components/ExplorePage/Explore';
 import SingleLocation from './components/SingleLocationPage/SingleLocation';
+import SplashPage from './components/SplashPage/SplashPage';
 import { authenticate } from './store/session';
 
 function App() {
@@ -29,34 +30,51 @@ function App() {
     return null;
   }
 
-  return (
-    <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <Route path='/locations/:location_id'>
-          <SingleLocation />
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
-        <Route path='/explore' exact={true}>
-          <Explore />
-        </Route>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
-      </Switch>
-    </BrowserRouter>
-  );
+  if (sessionUser?.id) {
+    return (
+      <BrowserRouter>
+        <NavBar />
+        <Switch>
+          <Route path='/login' exact={true}>
+            <LoginForm />
+          </Route>
+          <Route path='/sign-up' exact={true}>
+            <SignUpForm />
+          </Route>
+          <Route path='/locations/:location_id'>
+            <SingleLocation />
+          </Route>
+          <ProtectedRoute path='/users' exact={true} >
+            <UsersList/>
+          </ProtectedRoute>
+          <ProtectedRoute path='/users/:userId' exact={true} >
+            <User />
+          </ProtectedRoute>
+          <Route path='/explore' exact={true}>
+            <Explore />
+          </Route>
+          <ProtectedRoute path='/' exact={true} >
+            <h1>My Home Page</h1>
+          </ProtectedRoute>
+        </Switch>
+      </BrowserRouter>
+    );
+  } else {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route path='/signup' exact={true}>
+            <SignUpForm />
+          </Route>
+          <Route path='/'>
+            <SplashPage />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    )
+  }
+
+
 }
 
 export default App;
