@@ -40,16 +40,16 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Switch>
-          <Route path='/charlotte' esact={true}>
+          <Route path='/charlotte' exact={true}>
             <Charlotte />
           </Route>
-          <Route path='/charleston' esact={true}>
+          <Route path='/charleston' exact={true}>
             <Charleston />
           </Route>
-          <Route path='/tampa' esact={true}>
+          <Route path='/tampa' exact={true}>
             <Tampa />
           </Route>
-          <Route path='/miami' esact={true}>
+          <Route path='/miami' exact={true}>
             <Miami />
           </Route>
           <Route path='/locations/:location_id'>

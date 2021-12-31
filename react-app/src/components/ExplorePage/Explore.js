@@ -14,11 +14,23 @@ const Explore = () => {
 
     return (
         <div>
-            {locations?.map(location => (
-                <div key={location.id}>
-                    {location.name}
-                </div>
-            ))}
+            <div className='search-spots-container'>
+                <div className='charlotte-name'>All locations available</div>
+                {locations?.map((location, i) => (
+                    <div key={i} className='charlotte-locations'>
+                        <div>
+                            <a href={`/locations/${location?.id}`}>
+                                <img src={location.images[0].image_url} alt='image'/>
+                            </a>
+                        </div>
+                        <div>
+                            <div>{location?.name}</div>
+                            <div>{location?.amenities}</div>
+                            <div>${location?.price} / night</div>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
