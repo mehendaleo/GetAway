@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import CreateLocationFormModal from './CreateLocationModal';
+import SearchArea from './Search';
 import { useSelector } from 'react-redux';
 
 const NavBar = () => {
@@ -16,14 +17,7 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
+            <SearchArea />
         </li>
         <li>
           <CreateLocationFormModal />

@@ -66,12 +66,13 @@ function App() {
           <Route path='/signup' exact={true}>
             <SignUpForm />
           </Route>
-          <Route path='/'>
+          <Route path='/' exact={true}>
             <SplashPage />
           </Route>
         </Switch>
       </BrowserRouter>
     )
+
   }
 
 
