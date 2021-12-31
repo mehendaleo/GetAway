@@ -35,9 +35,7 @@ def single_location(location_id):
 def create_location():
     form = LocationForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # print('outside validate')
     if form.validate_on_submit():
-        # print('inside validate')
         new_location = Location(
             user_id = form.data['user_id'],
             city = form.data['city'],
@@ -95,10 +93,8 @@ def delete_location(location_id):
 # @login_required
 def update_location(location_id):
     form = UpdateLocationForm()
-    print('-------- outside')
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print('--------- inside')
         location = Location.query.get(location_id)
 
         location.city = form.data['city']

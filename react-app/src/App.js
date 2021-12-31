@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
+// import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -11,6 +11,10 @@ import Explore from './components/ExplorePage/Explore';
 import SingleLocation from './components/SingleLocationPage/SingleLocation';
 import SplashPage from './components/SplashPage/SplashPage';
 import HomePage from './components/HomePage/HomePage';
+import Charlotte from './components/Locations/Charlotte/Charlotte';
+import Charleston from './components/Locations/Charleston/Charleston';
+import Tampa from './components/Locations/Tampa/Tampa';
+import Miami from './components/Locations/Miami/Miami';
 import { authenticate } from './store/session';
 
 function App() {
@@ -36,11 +40,17 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Switch>
-          <Route path='/login' exact={true}>
-            <LoginForm />
+          <Route path='/charlotte' esact={true}>
+            <Charlotte />
           </Route>
-          <Route path='/sign-up' exact={true}>
-            <SignUpForm />
+          <Route path='/charleston' esact={true}>
+            <Charleston />
+          </Route>
+          <Route path='/tampa' esact={true}>
+            <Tampa />
+          </Route>
+          <Route path='/miami' esact={true}>
+            <Miami />
           </Route>
           <Route path='/locations/:location_id'>
             <SingleLocation />

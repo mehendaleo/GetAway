@@ -10,7 +10,6 @@ const SingleLocation = () => {
     const user = useSelector(state => state.session.user);
     const location = useSelector(state => state.location)
     const reviews = useSelector(state => Object.values(state.review));
-    console.log(reviews)
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(async() => {

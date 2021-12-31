@@ -14,8 +14,6 @@ const SearchArea = () => {
         }
     }, [dispatch, search])
 
-
-    console.log(search, results);
     return (
         <div>
             <input
