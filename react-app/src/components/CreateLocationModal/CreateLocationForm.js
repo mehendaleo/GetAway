@@ -41,7 +41,8 @@ const CreateLocationForm = ({ hideForm }) => {
         setErrors([]);
         let data = await dispatch(createLocationThunk(newLocation))
         if (!data) {
-            hideForm()
+            hideForm();
+            return history.push('/');
         } else {
             setErrors(data)
         }

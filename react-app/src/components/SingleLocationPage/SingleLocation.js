@@ -1,22 +1,44 @@
 import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import { getSingleLocationThunk, updateLocationThunk, deleteLocationThunk } from '../../store/location';
 import { loadReviewsThunk } from '../../store/review';
 
 const SingleLocation = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const location_id = useParams().location_id;
     const user = useSelector(state => state.session.user);
-    const location = useSelector(state => state.location)
+    const location = useSelector(state => state.location);
     const reviews = useSelector(state => Object.values(state.review));
+    const sessionUser = useSelector(state => state.session.user);
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(async() => {
         await dispatch(getSingleLocationThunk(location_id));
         await dispatch(loadReviewsThunk(location_id));
         await setIsLoaded(true)
-    }, [dispatch, location_id])
+    }, [dispatch, location_id]);
+
+    const handleDelete = () => {
+        dispatch(deleteLocationThunk(location_id));
+        history.push('/')
+    }
+
+    let editButton;
+    let deleteButton;
+    if (sessionUser?.id === location?.user_id) {
+        editButton = (
+            <span>
+                <button className='single-location-edit'>Edit Listing</button>
+            </span>
+        );
+        deleteButton = (
+            <span>
+                <button className='single-location-delete' onClick={() => handleDelete(location_id)}>Delete Location</button>
+            </span>
+        )
+    }
 
     return (
         <>
@@ -24,8 +46,8 @@ const SingleLocation = () => {
             {isLoaded && (
                 <div className='single-location-entire'>
                     <div className='single-location-parent'>
-                        <h1>{location?.name}</h1>
-                        <h3>{`${location?.city}, ${location?.state}, ${location?.country}`}</h3>
+                        <div>{location?.name}</div>
+                        <div>{location?.city}, {location?.state}, {location?.country} {editButton} {deleteButton}</div>
                         <div className='image-container'>
                             {location?.images.map((image, idx) => (
                                 <img src={image.image_url} key={idx}/>
