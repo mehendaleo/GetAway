@@ -30,7 +30,7 @@ const SingleLocation = () => {
     if (sessionUser?.id === location?.user_id) {
         editButton = (
             <span>
-                <button className='single-location-edit'>Edit Listing</button>
+                <a className='single-location-update' href={`/locations/${location_id}/update`}>Update Location</a>
             </span>
         );
         deleteButton = (

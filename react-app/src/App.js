@@ -15,6 +15,7 @@ import Charlotte from './components/Locations/Charlotte/Charlotte';
 import Charleston from './components/Locations/Charleston/Charleston';
 import Tampa from './components/Locations/Tampa/Tampa';
 import Miami from './components/Locations/Miami/Miami';
+import EditLocation from './components/EditLocation/EditLocation';
 import { authenticate } from './store/session';
 
 function App() {
@@ -52,8 +53,11 @@ function App() {
           <Route path='/miami' exact={true}>
             <Miami />
           </Route>
-          <Route path='/locations/:location_id'>
+          <Route path='/locations/:location_id' exact={true}>
             <SingleLocation />
+          </Route>
+          <Route path='/locations/:location_id/update' >
+            <EditLocation />
           </Route>
           <ProtectedRoute path='/users' exact={true} >
             <UsersList/>

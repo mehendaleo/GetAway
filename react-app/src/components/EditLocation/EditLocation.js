@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import {useState, useEffect} from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import { updateLocationThunk, getSingleLocationThunk } from '../../store/location';
+//pass location
 
-// thunk import
-import { createLocationThunk } from '../../store/location';
-
-
-const CreateLocationForm = ({ hideForm }) => {
+const EditLocation = () => {
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user);
     const history = useHistory();
+    const id = useParams().location_id;
+    const user_id = useSelector(state => state.session.user.id)
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
@@ -23,10 +23,18 @@ const CreateLocationForm = ({ hideForm }) => {
     const [imageurl3, setImageUrl3] = useState('');
     const [errors, setErrors] = useState([]);
 
+
+    useEffect(async() => {
+        await dispatch(getSingleLocationThunk(id));
+        await setIsLoaded(true)
+    }, [dispatch, id]);
+
+
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const newLocation = {
-            user_id: sessionUser.id,
+        const location = {
+            id,
+            user_id,
             city,
             state,
             country,
@@ -39,21 +47,20 @@ const CreateLocationForm = ({ hideForm }) => {
             image_url3: imageurl3,
         };
 
-        let data = await dispatch(createLocationThunk(newLocation))
+        let data = await dispatch(updateLocationThunk({location, id}))
         if (!data) {
-            hideForm();
-            return history.push('/');
+            return history.push(`/locations/${id}`);
         } else {
             setErrors(data)
         }
     };
 
-    // maybe add autocomplete to form?
+
     return (
         <div>
             <div>
                 <div>
-                    Create a new location!
+                    Edit your location!
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className='create-error-container'>
@@ -119,38 +126,14 @@ const CreateLocationForm = ({ hideForm }) => {
                                 placeholder="Provide your location's price per night"
                             />
                         </div>
-                        <div>
-                            <input
-                                type='text'
-                                value={imageurl1}
-                                onChange={e=>setImageUrl1(e.target.value)}
-                                placeholder='Provide your first image URL'
-                            />
-                        </div>
-                        <div>
-                            <input
-                                type='text'
-                                value={imageurl2}
-                                onChange={e=>setImageUrl2(e.target.value)}
-                                placeholder='Provide your second image URL'
-                            />
-                        </div>
-                        <div>
-                            <input
-                                type='text'
-                                value={imageurl3}
-                                onChange={e=>setImageUrl3(e.target.value)}
-                                placeholder='Provide your third image URL'
-                            />
-                        </div>
                     </div>
                     <button type='submit'>
-                        Submit
+                        Update
                     </button>
                 </form>
             </div>
         </div>
-    );
+    )
 };
 
-export default CreateLocationForm
+export default EditLocation;
