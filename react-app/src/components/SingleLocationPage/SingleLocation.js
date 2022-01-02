@@ -1,23 +1,60 @@
 import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {useParams} from 'react-router-dom';
-import { getSingleLocationThunk, updateLocationThunk, deleteLocationThunk } from '../../store/location';
-import { loadReviewsThunk } from '../../store/review';
+import {useParams, useHistory} from 'react-router-dom';
+import { getSingleLocationThunk, deleteLocationThunk } from '../../store/location';
+import { loadReviewsThunk, deleteReviewThunk } from '../../store/review';
+import CreateReviewModal from '../CreateReviewModal';
+import UpdateReviewModal from '../UpdateReviewModal';
 
 const SingleLocation = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const location_id = useParams().location_id;
     const user = useSelector(state => state.session.user);
-    const location = useSelector(state => state.location)
+    const location = useSelector(state => state.location);
     const reviews = useSelector(state => Object.values(state.review));
-    console.log(reviews)
+    const sessionUser = useSelector(state => state.session.user);
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(async() => {
         await dispatch(getSingleLocationThunk(location_id));
         await dispatch(loadReviewsThunk(location_id));
         await setIsLoaded(true)
-    }, [dispatch, location_id])
+    }, [dispatch, location_id]);
+
+    const handleDelete = () => {
+        dispatch(deleteLocationThunk(location_id));
+        history.push('/')
+    };
+
+    const handleDeleteReview = (id) => {
+        dispatch(deleteReviewThunk(id));
+        // history.push('/')
+    }
+
+    let editButton;
+    let deleteButton;
+    if (sessionUser?.id === location?.user_id) {
+        editButton = (
+            <span>
+                <a className='single-location-update' href={`/locations/${location_id}/update`}>Update Location</a>
+            </span>
+        );
+        deleteButton = (
+            <span>
+                <button className='single-location-delete' onClick={() => handleDelete(location_id)}>Delete Location</button>
+            </span>
+        )
+    }
+
+    // const editReview = (
+    //     <UpdateReviewModal />
+    // );
+    // const deleteReview = (
+    //     <span>
+    //         <button className='single-location-delete' onClick={() => handleDelete(location_id)}>Delete Location</button>
+    //     </span>
+    // );
 
     return (
         <>
@@ -25,8 +62,8 @@ const SingleLocation = () => {
             {isLoaded && (
                 <div className='single-location-entire'>
                     <div className='single-location-parent'>
-                        <h1>{location?.name}</h1>
-                        <h3>{`${location?.city}, ${location?.state}, ${location?.country}`}</h3>
+                        <div>{location?.name}</div>
+                        <div>{location?.city}, {location?.state}, {location?.country} {editButton} {deleteButton}</div>
                         <div className='image-container'>
                             {location?.images.map((image, idx) => (
                                 <img src={image.image_url} key={idx}/>
@@ -57,12 +94,15 @@ const SingleLocation = () => {
                                 <div className='single-location-offers-children'>Security cameras on property</div>
                             </div>
                         </div>
+                        <CreateReviewModal />
                         <div className='single-location-reviews-container'>
                             {reviews?.map((review, idx) => (
                                 <div key={idx} className='single-location-review'>
                                     <div className='review-info'>
-                                        <img src={review.user.propic_url} className='review-info-pic'/>
-                                        <span className='review-info-content'>{`${review.user.first_name} ${review.user.last_name}`}</span>
+                                        <img src={review?.user?.propic_url} className='review-info-pic'/>
+                                        <span className='review-info-content'>{`${review?.user?.first_name} ${review?.user?.last_name}`}</span>
+                                        {review?.user?.id === sessionUser.id ? <span><UpdateReviewModal id={review.id}/></span> : null}
+                                        {review?.user?.id === sessionUser.id ? <span><button className='single-location-delete' onClick={() => handleDeleteReview(review.id)}>Delete Review</button></span> : null}
                                     </div>
                                     <div className='review-content'>
                                         {review?.content}

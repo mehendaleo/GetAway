@@ -22,7 +22,8 @@ const initialState = {};
 const search = (state = initialState, action) => {
     switch (action.type) {
         case SEARCH_RESULTS: {
-           return {...action.payload}
+           const newState = {...action.payload}
+           return newState;
         }
         default:
             return state

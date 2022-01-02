@@ -64,7 +64,6 @@ export const updateReviewThunk = (review) => async(dispatch) => {
     if (response.ok) {
         const editedReview = await response.json();
         dispatch(updateReview(editedReview));
-        return editedReview;
     }
 };
 
@@ -84,10 +83,14 @@ const initialState = {};
 const review = (state = initialState, action) => {
     switch (action.type) {
         case GET_REVIEWS: {
-            const newState = {
-                ...state,
-                ...action.payload.reviews
-            }
+            // const newState = {
+            //     ...state,
+            //     ...action.payload.reviews
+            // }
+            const newState = {...state};
+            action.payload.reviews.forEach(review => {
+                newState[review.id] = review
+            })
             return newState;
         }
         case ADD_REVIEW: {

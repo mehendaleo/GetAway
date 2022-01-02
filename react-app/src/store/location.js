@@ -76,8 +76,8 @@ export const createLocationThunk = (newLocation) => async(dispatch) => {
 };
 
 // thunk to update a location
-export const updateLocationThunk = (location) => async(dispatch) => {
-    const response = await fetch(`/api/locations/${location.location_id}/update`, {
+export const updateLocationThunk = ({location, id}) => async(dispatch) => {
+    const response = await fetch(`/api/locations/${id}/update`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(location)
@@ -85,7 +85,12 @@ export const updateLocationThunk = (location) => async(dispatch) => {
     if (response.ok) {
         const editedLocation = await response.json();
         dispatch(updateLocation(editedLocation));
-        return editedLocation;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) return data.errors
+        else return ['Weird error']
+    } else {
+        return ['Server Error'];
     }
 };
 

@@ -41,5 +41,6 @@ class Location(db.Model):
             'state': self.state,
             'country': self.country,
             'name': self.name,
-            'images': [image.to_dict_images() for image in self.image]
+            'images': [image.to_dict_images() for image in self.image],
+            'price': self.price
         }
