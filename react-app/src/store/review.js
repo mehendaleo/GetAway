@@ -64,7 +64,6 @@ export const updateReviewThunk = (review) => async(dispatch) => {
     if (response.ok) {
         const editedReview = await response.json();
         dispatch(updateReview(editedReview));
-        return editedReview;
     }
 };
 

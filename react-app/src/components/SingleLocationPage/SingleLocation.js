@@ -3,7 +3,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
 import { getSingleLocationThunk, updateLocationThunk, deleteLocationThunk } from '../../store/location';
 import { loadReviewsThunk } from '../../store/review';
-import CreateReviewModal from '../CreateReviewModal'
+import CreateReviewModal from '../CreateReviewModal';
+import UpdateReviewModal from '../UpdateReviewModal';
 
 const SingleLocation = () => {
     const dispatch = useDispatch();
@@ -40,6 +41,13 @@ const SingleLocation = () => {
             </span>
         )
     }
+
+    // const editReview = (
+    //     <UpdateReviewModal />
+    // );
+    const deleteReview = (
+        <p>Delete</p>
+    );
 
     return (
         <>
@@ -86,6 +94,8 @@ const SingleLocation = () => {
                                     <div className='review-info'>
                                         <img src={review?.user?.propic_url} className='review-info-pic'/>
                                         <span className='review-info-content'>{`${review?.user?.first_name} ${review?.user?.last_name}`}</span>
+                                        {review.user.id === sessionUser.id ? <div><UpdateReviewModal id={review.id}/></div> : null}
+                                        {review.user.id === sessionUser.id ? <div>{deleteReview}</div> : null}
                                     </div>
                                     <div className='review-content'>
                                         {review?.content}
