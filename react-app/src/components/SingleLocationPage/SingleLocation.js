@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
-import { getSingleLocationThunk, updateLocationThunk, deleteLocationThunk } from '../../store/location';
-import { loadReviewsThunk } from '../../store/review';
+import { getSingleLocationThunk, deleteLocationThunk } from '../../store/location';
+import { loadReviewsThunk, deleteReviewThunk } from '../../store/review';
 import CreateReviewModal from '../CreateReviewModal';
 import UpdateReviewModal from '../UpdateReviewModal';
 
@@ -25,6 +25,11 @@ const SingleLocation = () => {
     const handleDelete = () => {
         dispatch(deleteLocationThunk(location_id));
         history.push('/')
+    };
+
+    const handleDeleteReview = (id) => {
+        dispatch(deleteReviewThunk(id));
+        // history.push('/')
     }
 
     let editButton;
@@ -45,9 +50,11 @@ const SingleLocation = () => {
     // const editReview = (
     //     <UpdateReviewModal />
     // );
-    const deleteReview = (
-        <p>Delete</p>
-    );
+    // const deleteReview = (
+    //     <span>
+    //         <button className='single-location-delete' onClick={() => handleDelete(location_id)}>Delete Location</button>
+    //     </span>
+    // );
 
     return (
         <>
@@ -94,8 +101,8 @@ const SingleLocation = () => {
                                     <div className='review-info'>
                                         <img src={review?.user?.propic_url} className='review-info-pic'/>
                                         <span className='review-info-content'>{`${review?.user?.first_name} ${review?.user?.last_name}`}</span>
-                                        {review.user.id === sessionUser.id ? <div><UpdateReviewModal id={review.id}/></div> : null}
-                                        {review.user.id === sessionUser.id ? <div>{deleteReview}</div> : null}
+                                        {review?.user?.id === sessionUser.id ? <span><UpdateReviewModal id={review.id}/></span> : null}
+                                        {review?.user?.id === sessionUser.id ? <span><button className='single-location-delete' onClick={() => handleDeleteReview(review.id)}>Delete Review</button></span> : null}
                                     </div>
                                     <div className='review-content'>
                                         {review?.content}
