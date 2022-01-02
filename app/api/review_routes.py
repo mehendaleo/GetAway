@@ -57,6 +57,7 @@ def delete_review(review_id):
     if review:
         db.session.delete(review)
         db.session.commit()
-        return review.to_dict()
+        return review.to_dict_delete()
+        # return "success"
     else:
         return 'bad data'

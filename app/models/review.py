@@ -17,5 +17,14 @@ class Review(db.Model):
             'user_id': self.user_id,
             'location_id': self.location_id,
             'content': self.content,
-            'user': self.user.to_dict()
+            'user': self.user.to_dict(),
+            'id': self.id
+        }
+
+    def to_dict_delete(self):
+        return {
+            'id': self.id,
+            'content': self.content,
+            'location_id': self.location_id,
+            'user_id': self.user_id
         }

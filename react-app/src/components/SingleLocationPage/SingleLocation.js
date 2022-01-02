@@ -3,6 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
 import { getSingleLocationThunk, updateLocationThunk, deleteLocationThunk } from '../../store/location';
 import { loadReviewsThunk } from '../../store/review';
+import CreateReviewModal from '../CreateReviewModal'
 
 const SingleLocation = () => {
     const dispatch = useDispatch();
@@ -78,12 +79,13 @@ const SingleLocation = () => {
                                 <div className='single-location-offers-children'>Security cameras on property</div>
                             </div>
                         </div>
+                        <CreateReviewModal />
                         <div className='single-location-reviews-container'>
                             {reviews?.map((review, idx) => (
                                 <div key={idx} className='single-location-review'>
                                     <div className='review-info'>
-                                        <img src={review.user.propic_url} className='review-info-pic'/>
-                                        <span className='review-info-content'>{`${review.user.first_name} ${review.user.last_name}`}</span>
+                                        <img src={review?.user?.propic_url} className='review-info-pic'/>
+                                        <span className='review-info-content'>{`${review?.user?.first_name} ${review?.user?.last_name}`}</span>
                                     </div>
                                     <div className='review-content'>
                                         {review?.content}
