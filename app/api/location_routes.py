@@ -118,7 +118,7 @@ def update_location(location_id):
         db.session.commit()
         return location.to_dict()
     else:
-        return "bad data"
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # location search route
 @location_routes.route('/<string:search>', methods=['GET'])

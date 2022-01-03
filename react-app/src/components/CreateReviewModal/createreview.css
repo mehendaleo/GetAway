@@ -1,0 +1,13 @@
+.create-review-grandparent {
+    height: 300px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-review-message {
+    font-family: 'Kids Club', sans-serif;
+    margin-bottom: 35px;
+}

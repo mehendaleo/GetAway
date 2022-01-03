@@ -2,6 +2,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
 import {useState} from 'react';
 import { addReviewThunk } from '../../store/review';
+import './createreview.css';
 
 const CreateReview = ({hideForm}) => {
     const sessionUser = useSelector(state => state?.session?.user);
@@ -19,41 +20,47 @@ const CreateReview = ({hideForm}) => {
             location_id,
             user_id: sessionUser.id
         }
-
+        setErrors([]);
         let data = await dispatch(addReviewThunk(review));
         if (!data) {
             hideForm();
+            return history.push(`/explore`)
         } else {
-            setErrors(data.errors )
+            setErrors(data)
         }
-        history.push(`/explore`)
+
     };
 
     return (
-        <div className='create-review-box'>
-            <form onSubmit={handleSubmit}>
-                <div className='errors-container'>
-                    {errors?.map((e,i) => (
-                        <li key={i}>
-                            {e}
-                        </li>
-                    ))}
+        <div className='create-review-grandparent'>
+            <div>
+                <div className='create-review-message'>
+                    Leave a review!
                 </div>
-                <div className='create-div'>
-                    <div>
-                        <input
-                            type='text'
-                            value={content}
-                            onChange={e => setContent(e.target.value)}
-                            placeholder='Leave a review'
-                            required
-                        />
+                <form onSubmit={handleSubmit}>
+                    <div className='create-error-container'>
+                        {errors?.map((e,i) => (
+                            <li key={i} className='create-error'>
+                                {e}
+                            </li>
+                        ))}
                     </div>
-                </div>
-                <div>
-                    <button type='submit'>Submit</button>
-                </div>
-            </form>
+                    <div className='create-div'>
+                        <div>
+                            <input
+                                type='text'
+                                value={content}
+                                onChange={e => setContent(e.target.value)}
+                                placeholder='Leave a review'
+                                className='create-location-input'
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <button type='submit'>Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 };
