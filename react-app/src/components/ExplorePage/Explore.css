@@ -1,0 +1,28 @@
+.locations-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.explore-image {
+    height: 317px;
+    width: 317px;
+    border-radius: 5px;
+    margin: 10px 10px
+}
+
+.explore-map-locations {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+}
+
+.explore-location-name {
+    font-size: 30px;
+    padding-top: 20px;
+    padding-left: 20px;
+    border-bottom: 1px solid rgb(230, 226, 226);
+    margin-bottom: 10px;
+}
