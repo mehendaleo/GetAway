@@ -1,0 +1,44 @@
+.create-location-grandparent {
+    height: 600px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-location-message {
+    font-size: 35px;
+    font-family: 'Kids Club', sans-serif;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.create-location-input {
+    border: 1px solid rgb(113,113,113);
+    border-radius: 5px;
+    height: 35px;
+    width: 350px;
+    padding-left: 12px;
+    outline: none;
+    margin-bottom: 5px;
+    background-color: rgb(242, 242, 242);
+    resize: none;
+}
+
+.create-error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    margin-bottom: 10px;
+}
+
+.create-error {
+    max-height: inherit;
+}
+
+.create-form {
+    overflow-y: auto;
+}

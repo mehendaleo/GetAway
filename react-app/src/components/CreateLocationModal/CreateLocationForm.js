@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
+import './createlocation.css';
 // thunk import
 import { createLocationThunk } from '../../store/location';
 
@@ -38,7 +38,7 @@ const CreateLocationForm = ({ hideForm }) => {
             image_url2: imageurl2,
             image_url3: imageurl3,
         };
-
+        setErrors([]);
         let data = await dispatch(createLocationThunk(newLocation))
         if (!data) {
             hideForm();
@@ -50,18 +50,26 @@ const CreateLocationForm = ({ hideForm }) => {
 
     // maybe add autocomplete to form?
     return (
-        <div>
+        <div className='create-location-grandparent'>
             <div>
-                <div>
+                <div className='create-location-message'>
                     Create a new location!
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className='create-form'>
                     <div className='create-error-container'>
-                        {errors.map((err, i) => (
+                        {/* {errors.map((err, i) => (
                             <li key={i}>
                                 {err}
                             </li>
-                        ))}
+                        ))} */}
+                        {errors.map((err, i) => {
+
+                            return (
+                                <li key={i} className='create-error'>
+                                    {err}
+                                </li>
+                            )
+                        })}
                     </div>
                     <div className='create-div'>
                         <div>
@@ -70,6 +78,7 @@ const CreateLocationForm = ({ hideForm }) => {
                                 value={city}
                                 onChange={e=>setCity(e.target.value)}
                                 placeholder='Provide your city'
+                                className='create-location-input'
                             />
                         </div>
                         <div>
@@ -78,6 +87,7 @@ const CreateLocationForm = ({ hideForm }) => {
                                 value={state}
                                 onChange={e=>setState(e.target.value)}
                                 placeholder='Provide your state'
+                                className='create-location-input'
                             />
                         </div>
                         <div>
@@ -86,6 +96,7 @@ const CreateLocationForm = ({ hideForm }) => {
                                 value={country}
                                 onChange={e=>setCountry(e.target.value)}
                                 placeholder='Provide your country'
+                                className='create-location-input'
                             />
                         </div>
                         <div>
@@ -94,6 +105,7 @@ const CreateLocationForm = ({ hideForm }) => {
                                 value={name}
                                 onChange={e=>setName(e.target.value)}
                                 placeholder="Provide your location's name"
+                                className='create-location-input'
                             />
                         </div>
                         <div>
@@ -102,6 +114,7 @@ const CreateLocationForm = ({ hideForm }) => {
                                 value={amenities}
                                 onChange={e=>setAmenities(e.target.value)}
                                 placeholder="Provide your location's amenities"
+                                className='create-location-input'
                             />
                         </div>
                         <div>
@@ -109,6 +122,7 @@ const CreateLocationForm = ({ hideForm }) => {
                                 value={description}
                                 onChange={e=>setDescription(e.target.value)}
                                 placeholder="Provide your location's description"
+                                className='create-location-input'
                             />
                         </div>
                         <div>
@@ -117,6 +131,7 @@ const CreateLocationForm = ({ hideForm }) => {
                                 value={price}
                                 onChange={e=>setPrice(e.target.value)}
                                 placeholder="Provide your location's price per night"
+                                className='create-location-input'
                             />
                         </div>
                         <div>
@@ -125,6 +140,7 @@ const CreateLocationForm = ({ hideForm }) => {
                                 value={imageurl1}
                                 onChange={e=>setImageUrl1(e.target.value)}
                                 placeholder='Provide your first image URL'
+                                className='create-location-input'
                             />
                         </div>
                         <div>
@@ -133,6 +149,7 @@ const CreateLocationForm = ({ hideForm }) => {
                                 value={imageurl2}
                                 onChange={e=>setImageUrl2(e.target.value)}
                                 placeholder='Provide your second image URL'
+                                className='create-location-input'
                             />
                         </div>
                         <div>
@@ -141,6 +158,7 @@ const CreateLocationForm = ({ hideForm }) => {
                                 value={imageurl3}
                                 onChange={e=>setImageUrl3(e.target.value)}
                                 placeholder='Provide your third image URL'
+                                className='create-location-input'
                             />
                         </div>
                     </div>
