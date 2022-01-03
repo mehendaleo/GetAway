@@ -7,9 +7,9 @@ const CreateLocationFormModal = () => {
     const hideForm = () => setShowModal(false);
 
     return (
-        <div>
-            <a onClick={() => setShowModal(true)}>
-                Create a new location
+        <div className='create-host-parent'>
+            <a onClick={() => setShowModal(true)} className='create-host'>
+                Host
             </a>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
