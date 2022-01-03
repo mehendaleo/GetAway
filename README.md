@@ -1,134 +1,67 @@
-# Flask React Project
+## Summary
+[GetAway](https://getaway-app.herokuapp.com/) is built similarly to AirBnb. Users can create new accounts or login as a demo user to test the site. Logged in users can host locations with text descriptions and images. Users can also leave reviews on other locations as well. Logged in users can delete their own host locations and reviews that they have left, as well as edit them.
 
-This is the starter for the Flask React project.
+## Structure
+This app includes: full CRUD for locations, full CRUD for reviews, and a search field to find locations by city, state, or country.
+Features:
+* Create an account
+* Login and logout of your account
+* Login as a demo user
+* Create a location with a text description and images
+* Edit a location
+* Delete a location
+* Create a review for a location
+* Edit a review
+* Delete a review
+* View all locations by clicking "I'm Flexible" on the home page
+* View locations in a certain preset city by clicking the appropriate link
+* Search for a location by city, state, or country via the search bar
 
-## Getting started
+## Backend
+All backend routes were built using Flask with Python.
 
-1. Clone this repository (only this branch)
+## Frontend
+Frontend components were built using React/Redux with Javascript
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+## Dependencies
+### Backend
+Includes:
+* SQLAlchemy
+* Flask-SQLAlchemy
+* Flask
+* Flask-WTF
+* Flask-Cors
+* itsdangerous
+* Flask-Login
+* Faker
+* click
+* flask-migrate
+* Werkzeug
 
-2. Install dependencies
+### Frontend
+Includes:
+* React
+* React-Redux
+* React-DOM
+* react-router-dom
+* redux
+* redux-thunk
+* react-scripts
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+## Splash Page
+When a user visits the website, they are prompted to either login using their credentials, login using the demo login, or create a new account. Either logging in or using the demo login will redirect the logged in user to the home page.
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+## Sign Up
+When a user clicks the signup option from the splash page, they are redirected to a form to create a new account. Successfully creating an account will redirect them to the home page as a logged in user.
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+## Home Page
+This is the first page a logged in user will see. There is an option to view all locations by clicking "I'm Flexible", and there are 4 preset cities to view locations from below. Clicking any of these buttons will redirect the user to a page displaying the appropriate locations. At the bottom of the home page, there is a link that redirects to the developer's (Omkar Mehendale) GitHub account. Similarly, there is a link that redirects to the developer's LinkedIn profile.
 
-   ```bash
-   pipenv shell
-   ```
+## NavBar
+Logged in users will have access to the navbar, which is at the top of the page. This bar includes a return link to return immediately to the home page, a search bar to search for locations by city, state, or country, a host button that opens a modal to create a new location, and a logout button.
 
-   ```bash
-   flask db upgrade
-   ```
+## Location Page
+Clicking on a location will redirect the user to the single location page. This page will display all of the information about the location, including the name of the host, the images associated with it, it's description, amenities, and price. This page will also display reviews left by other users about this location.
 
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
-
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
-
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
-
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
-
-## Deploy to Heroku
-
-1. Before you deploy, don't forget to run the following command in order to
-ensure that your production environment has all of your up-to-date
-dependencies. You only have to run this command when you have installed new
-Python packages since your last deployment, but if you aren't sure, it won't
-hurt to run it again.
-
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
-
-2. Create a new project on Heroku
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-4. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-5. Run
-
-   ```bash
-   heroku login
-   ```
-
-6. Login to the heroku container registry
-
-   ```bash
-   heroku container:login
-   ```
-
-7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-8. Push your docker container to heroku from the root directory of your project.
-   (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
-   This will build the Dockerfile and push the image to your heroku container registry.
-
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. Release your docker container to heroku
-
-      ```bash
-      heroku container:release web -a {NAME_OF_HEROKU_APP}
-      ```
-
-10. set up your database
-
-      ```bash
-      heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-      heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-      ```
-
-11. Under Settings find "Config Vars" and add any additional/secret .env
-variables.
-
-12. profit
-
-### For M1 Mac users
-
-(Replaces **Step 8**)
-
-1. Build image with linux platform for heroku servers. Replace
-{NAME_OF_HEROKU_APP} with your own tag:
-
-   ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
-   ```
-
-2. Tag your app with the url for your apps registry. Make sure to use the name
-of your Heroku app in the url and tag name:
-
-   ```bash=2
-   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
-
-3. Use docker to push the image to the Heroku container registry:
-
-   ```bash=3
-   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
+## Explore
+Clicking "I'm Flexible" from the home page will redirect the user to the explore page, which will display all locations for the user to peruse. Clicking any of these will redirect to the appropriate location page.
