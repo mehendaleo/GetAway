@@ -20,7 +20,7 @@
     padding-top: 25px;
     margin-top: 50px;
     margin-left: 10px;
-    background-color: white;
+    background-color: lightgray;
 }
 
 .login-form {
@@ -36,13 +36,14 @@
     justify-content: center;
     width: 400px;
     margin-left: 10px;
-    background-color: white;
+    background-color: lightgray;
     margin-top: 10px;
     height: 80px;
 }
 
 .splash-signup-redirect {
     text-decoration: none;
+
 }
 
 .splash-message {
@@ -61,7 +62,7 @@
     width: 300px;
     border: none;
     margin-top: 30px;
-    background-color: lightcoral;
+    /* background-color: lightcoral; */
     color: white;
     border-radius: 5px;
     cursor: pointer;
