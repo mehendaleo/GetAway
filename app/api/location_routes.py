@@ -7,6 +7,16 @@ from sqlalchemy import or_
 
 location_routes = Blueprint('locations', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 
 # get all locations for explore
 @location_routes.route('/explore')
@@ -72,7 +82,7 @@ def create_location():
         db.session.commit()
         return new_location.to_dict()
     else:
-        return 'bad data'
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # delete single location
@@ -108,7 +118,7 @@ def update_location(location_id):
         db.session.commit()
         return location.to_dict()
     else:
-        return "bad data"
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # location search route
 @location_routes.route('/<string:search>', methods=['GET'])

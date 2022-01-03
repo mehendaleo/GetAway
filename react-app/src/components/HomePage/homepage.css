@@ -1,0 +1,164 @@
+.home-container {
+    width: 100%;
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-image-div {
+    display: flex;
+    /* justify-content: center; */
+    align-items: top;
+    box-sizing: border-box;
+    width: 80%
+}
+
+.home-image {
+    /* position:absolute; */
+    left:0;
+    width: 100%;
+    height: 650px;
+}
+
+.home-explore-redirect {
+    position: absolute;
+    z-index: 1;
+    font-size: 20px;
+    color: black;
+    top: 450px;
+    left: 55vh;
+    background-color: white;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.home-explore-all {
+    position: absolute;
+    z-index: 1;
+    top: 380px;
+    left: 350px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 33px;
+    color: white;
+}
+
+.home-explore-label-div {
+    margin-left: 20px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.home-explore-label {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 35px;
+    padding-left: 15px;
+}
+
+.home-explore-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 35px;
+}
+
+.Tampa {
+    width: fit-content;
+}
+
+.tampa-icon {
+    height: 127px;
+    width:150px;
+    border-radius: 18px;
+    object-fit: cover;
+    float: left;
+}
+
+.Tampa-redirect {
+    display: flex;
+    align-items: center;
+    font-family: 'Kids Club', sans-serif;
+    border-radius: 20px;
+    width: 325px;
+    background-color: rgb(188, 26, 110);
+    color: white;
+}
+
+.Charleston {
+    width: fit-content;
+}
+
+.charleston-icon {
+    height: 127px;
+    width:150px;
+    border-radius: 18px;
+    object-fit: cover;
+    float: left;
+}
+
+.Charleston-redirect {
+    display: flex;
+    align-items: center;
+    font-family: 'Kids Club', sans-serif;
+    border-radius: 20px;
+    width: 325px;
+    background-color: rgb(204, 45, 74);
+    color: white;
+}
+
+.Miami {
+    width: fit-content;
+}
+
+.miami-icon {
+    height: 127px;
+    width:150px;
+    border-radius: 18px;
+    object-fit: cover;
+    float: left;
+}
+
+.Miami-redirect {
+    display: flex;
+    align-items: center;
+    font-family: 'Kids Club', sans-serif;
+    border-radius: 20px;
+    width: 325px;
+    background-color: rgb(222, 49, 81);
+    color: white;
+}
+
+.Charlotte {
+    width: fit-content;
+    /* margin-right: 20px; */
+}
+
+.charlotte-icon {
+    height: 127px;
+    width:150px;
+    border-radius: 18px;
+    object-fit: cover;
+    float: left;
+}
+
+.Charlotte-redirect {
+    display: flex;
+    align-items: center;
+    font-family: 'Kids Club', sans-serif;
+    border-radius: 20px;
+    width: 325px;
+    background-color: rgb(217, 59, 48);
+    color: white;
+}
+
+.home-info {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}

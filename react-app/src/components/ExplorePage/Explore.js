@@ -20,23 +20,24 @@ const Explore = () => {
     // }
 
     return (
-        <div>
+        <div className="explore-parent">
             <div className='search-spots-container'>
-                <div className='charlotte-name'>All locations available</div>
-                {locations?.map((location, i) => (
-                    <div key={i} className='charlotte-locations'>
-                        <div>
-                            <a href={`/locations/${location?.id}`}>
-                                <img src={location.images[0].image_url} alt='image'/>
-                            </a>
+                <div className="explore-location-name">All locations</div>
+                <div className="locations-container">
+                    {locations?.map((location, i) => (
+                        <div key={i} className='explore-map-locations'>
+                            <div>
+                                <a href={`/locations/${location?.id}`}>
+                                    <img className="explore-image" src={location.images[0].image_url} alt='image'/>
+                                </a>
+                            </div>
+                            <div>
+                                <div>{location?.name}</div>
+                                <div>${location?.price} / night</div>
+                            </div>
                         </div>
-                        <div>
-                            <div>{location?.name}</div>
-                            <div>{location?.amenities}</div>
-                            <div>${location?.price} / night</div>
-                        </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     )

@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import { updateLocationThunk, getSingleLocationThunk } from '../../store/location';
+import './editlocation.css';
 //pass location
 
 const EditLocation = () => {
@@ -18,9 +19,6 @@ const EditLocation = () => {
     const [amenities, setAmenities] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    const [imageurl1, setImageUrl1] = useState('');
-    const [imageurl2, setImageUrl2] = useState('');
-    const [imageurl3, setImageUrl3] = useState('');
     const [errors, setErrors] = useState([]);
 
 
@@ -41,10 +39,7 @@ const EditLocation = () => {
             name,
             amenities,
             description,
-            price,
-            image_url1: imageurl1,
-            image_url2: imageurl2,
-            image_url3: imageurl3,
+            price
         };
 
         let data = await dispatch(updateLocationThunk({location, id}))
@@ -57,11 +52,11 @@ const EditLocation = () => {
 
 
     return (
-        <div>
+        <div className='edit-location-grandparent'>
             <div>
-                <div>
+                <h2 className='create-location-message'>
                     Edit your location!
-                </div>
+                </h2>
                 <form onSubmit={handleSubmit}>
                     <div className='create-error-container'>
                         {errors.map((err, i) => (
@@ -77,6 +72,7 @@ const EditLocation = () => {
                                 value={city}
                                 onChange={e=>setCity(e.target.value)}
                                 placeholder='Provide your city'
+                                className='create-location-input'
                             />
                         </div>
                         <div>
@@ -85,6 +81,7 @@ const EditLocation = () => {
                                 value={state}
                                 onChange={e=>setState(e.target.value)}
                                 placeholder='Provide your state'
+                                className='create-location-input'
                             />
                         </div>
                         <div>
@@ -93,6 +90,7 @@ const EditLocation = () => {
                                 value={country}
                                 onChange={e=>setCountry(e.target.value)}
                                 placeholder='Provide your country'
+                                className='create-location-input'
                             />
                         </div>
                         <div>
@@ -101,6 +99,7 @@ const EditLocation = () => {
                                 value={name}
                                 onChange={e=>setName(e.target.value)}
                                 placeholder="Provide your location's name"
+                                className='create-location-input'
                             />
                         </div>
                         <div>
@@ -109,6 +108,7 @@ const EditLocation = () => {
                                 value={amenities}
                                 onChange={e=>setAmenities(e.target.value)}
                                 placeholder="Provide your location's amenities"
+                                className='create-location-input'
                             />
                         </div>
                         <div>
@@ -116,6 +116,7 @@ const EditLocation = () => {
                                 value={description}
                                 onChange={e=>setDescription(e.target.value)}
                                 placeholder="Provide your location's description"
+                                className='create-location-input'
                             />
                         </div>
                         <div>
@@ -124,6 +125,7 @@ const EditLocation = () => {
                                 value={price}
                                 onChange={e=>setPrice(e.target.value)}
                                 placeholder="Provide your location's price per night"
+                                className='create-location-input'
                             />
                         </div>
                     </div>

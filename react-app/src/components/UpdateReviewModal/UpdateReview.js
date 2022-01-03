@@ -21,40 +21,46 @@ const UpdateReview = ({hideForm, id}) => {
             id
         }
 
+        setErrors([]);
         let data = await dispatch(updateReviewThunk(review));
         if (!data) {
             hideForm();
         } else {
-            setErrors(data.errors )
+            setErrors(data)
         }
         // history.push(`/explore`)
     };
 
     return (
-        <div className='create-review-box'>
-            <form onSubmit={handleSubmit}>
-                <div className='errors-container'>
-                    {errors?.map((e,i) => (
-                        <li key={i}>
-                            {e}
-                        </li>
-                    ))}
+        <div className='create-review-grandparent'>
+            <div>
+                <div className='create-review-message'>
+                    Update your review!
                 </div>
-                <div className='create-div'>
-                    <div>
-                        <input
-                            type='text'
-                            value={content}
-                            onChange={e => setContent(e.target.value)}
-                            placeholder='Leave a review'
-                            required
-                        />
+                <form onSubmit={handleSubmit}>
+                    <div className='create-error-container'>
+                        {errors?.map((e,i) => (
+                            <li key={i} className='create-error'>
+                                {e}
+                            </li>
+                        ))}
                     </div>
-                </div>
-                <div>
-                    <button type='submit'>Submit</button>
-                </div>
-            </form>
+                    <div className='create-div'>
+                        <div>
+                            <input
+                                type='text'
+                                value={content}
+                                onChange={e => setContent(e.target.value)}
+                                placeholder='Leave a review'
+                                className='create-location-input'
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <button type='submit'>Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 };

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './auth.css'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -54,71 +55,83 @@ const SignUpForm = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={onSignUp}>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
+    <div className='signup-megaparent'>
+      <div className='signup-parent'>
+        <div className='signup-container'>
+          <form onSubmit={onSignUp}>
+            <div>
+              {errors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+              ))}
+            </div>
+            <div>
+              <input
+                type='text'
+                name='first_name'
+                onChange={updateFirstName}
+                value={first_name}
+                placeholder='First Name'
+                className='login-form-input'
+              ></input>
+            </div>
+            <div>
+              <input
+                type='text'
+                name='last_name'
+                onChange={updateLastName}
+                value={last_name}
+                placeholder='Last Name'
+                className='login-form-input'
+              ></input>
+            </div>
+            <div>
+              <input
+                type='text'
+                name='email'
+                onChange={updateEmail}
+                value={email}
+                placeholder='Email'
+                className='login-form-input'
+              ></input>
+            </div>
+            <div>
+              <input
+                type='text'
+                name='profile'
+                onChange={updatePropic}
+                value={propic_url}
+                placeholder='Profile Image URL'
+                className='login-form-input'
+              ></input>
+            </div>
+            <div>
+              <input
+                type='password'
+                name='password'
+                onChange={updatePassword}
+                value={password}
+                placeholder='Password'
+                className='login-form-input'
+              ></input>
+            </div>
+            <div>
+              <input
+                type='password'
+                name='repeat_password'
+                onChange={updateRepeatPassword}
+                value={repeatPassword}
+                required={true}
+                placeholder='Confirm Password'
+                className='login-form-input'
+              ></input>
+            </div>
+            <button type='submit' className='demo-button'>Sign Up</button>
+          </form>
         </div>
-        <div>
-          <label>First Name</label>
-          <input
-            type='text'
-            name='first_name'
-            onChange={updateFirstName}
-            value={first_name}
-          ></input>
+        <div className='splash-signup'>
+          <a href={'/'}>Log in</a>
         </div>
-        <div>
-          <label>Last Name</label>
-          <input
-            type='text'
-            name='last_name'
-            onChange={updateLastName}
-            value={last_name}
-          ></input>
-        </div>
-        <div>
-          <label>Email</label>
-          <input
-            type='text'
-            name='email'
-            onChange={updateEmail}
-            value={email}
-          ></input>
-        </div>
-        <div>
-          <label>Profile Image URL</label>
-          <input
-            type='text'
-            name='profile'
-            onChange={updatePropic}
-            value={propic_url}
-          ></input>
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type='password'
-            name='password'
-            onChange={updatePassword}
-            value={password}
-          ></input>
-        </div>
-        <div>
-          <label>Repeat Password</label>
-          <input
-            type='password'
-            name='repeat_password'
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-          ></input>
-        </div>
-        <button type='submit'>Sign Up</button>
-      </form>
-      <a href={'/'}>Log in</a>
+      </div>
     </div>
   );
 };

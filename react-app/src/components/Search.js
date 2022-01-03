@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSearchResultsThunk } from '../store/search';
+import './rest.css'
 
 const SearchArea = () => {
     const dispatch = useDispatch();
@@ -15,18 +16,19 @@ const SearchArea = () => {
     }, [dispatch, search])
 
     return (
-        <div>
+        <div className='search-parent'>
             <input
                 placeholder='Search'
                 type='search'
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 onClick={() => setStyle({visibility: 'visible'})}
+                className='search-input'
             />
-            <div style={style}>
+            <div style={style} className='search-results'>
                 {(search !== '') && (results?.map((location, i) => (
-                    <a key={i} href={`/locations/${location.id}`}>
-                        <img src={location?.images[0].image_url}/>
+                    <a key={i} href={`/locations/${location.id}`} className='search-each-result'>
+                        <img src={location?.images[0].image_url} className='search-res-img'/>
                         <div>
                             {location?.name}
                         </div>
