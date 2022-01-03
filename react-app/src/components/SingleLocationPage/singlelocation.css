@@ -1,0 +1,154 @@
+.single-location-entire {
+    display: flex;
+    justify-content: center;
+    padding-left: 75px;
+}
+
+.single-location-parent {
+    margin-top: 50px;
+}
+
+.single-location-name {
+    font-size: 26px;
+    margin-bottom: 5px;
+}
+
+.single-location-area {
+    font-size: 14px;
+    color: rgb(113,113,113);
+    margin-bottom: 10px;
+}
+
+.single-image-container {
+    /* display:grid;
+    grid-template-areas:
+    'b b a'
+    'b b c'
+    'b b c'
+    ; */
+    display: flex;
+}
+
+.single-location-images {
+    width: 320px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: all .2s ease-in-out;
+}
+
+.single-location-images:hover {
+    transform: scale(1.1);
+}
+
+.single-location-bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.single-location-owner-and-pic {
+    display: flex;
+    margin-top: 20px;
+    /* border-top: 1px solid rgb(113,113,113); */
+}
+
+.single-location-owner-info {
+    margin-top: 20px;
+    font-size: 21px;
+
+}
+
+.owner-propic {
+    /* margin-top: 30px; */
+    height: 60px;
+    width: 60px;
+    border-radius: 250px;
+    margin-left: 30px;
+    object-fit: cover;
+}
+
+.single-location-amenities {
+    color: rgb(113,113,113);
+    margin-bottom: 30px;
+    /* border-top: 1px solid rgb(113,113,113); */
+}
+
+.single-location-about {
+    border-top: 1px solid rgb(113,113,113);
+    font-size: 20px;
+    margin-bottom: 25px;
+    padding-top: 25px;
+}
+
+.single-location-description {
+    border-bottom: 1px solid rgb(113,113,113);
+    font-size: 18px;
+    font-weight: lighter;
+    padding-bottom: 45px;
+}
+
+.single-location-offers {
+    margin-top: 45px;
+    font-size: 22px;
+    width: fit-content;
+}
+
+.single-location-offers-parent {
+    padding-top: 20px;
+    display:grid;
+    grid-template-areas:
+    '1 6'
+    '2 7'
+    '3 8'
+    '4 9'
+    '5 10'
+    ;
+    font-weight: lighter;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgb(113,113,113);
+    padding-bottom: 20px;
+}
+
+.single-location-reviews-container {
+    display: grid;
+    grid-template-columns: 500px 500px;
+    /* justify-content: center; */
+    gap: 20px;
+    /* padding-bottom: 100px; */
+}
+
+.single-location-review {
+    margin-top: 50px;
+    font-size: 22px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid rgb(113,113,113) */
+}
+
+.review-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.review-info-pic {
+    height: 60px;
+    width: 60px;
+    border-radius: 250px;
+    object-fit: cover;
+}
+
+.review-info-content {
+    font-size: 14px;
+}
+
+.review-content {
+    width: 450px;
+    height: 150px;
+    margin-top: 15px;
+    font-weight: lighter;
+    overflow:visible;
+    overflow-x: hidden;
+}

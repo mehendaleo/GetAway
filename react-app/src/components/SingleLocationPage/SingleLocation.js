@@ -5,6 +5,7 @@ import { getSingleLocationThunk, deleteLocationThunk } from '../../store/locatio
 import { loadReviewsThunk, deleteReviewThunk } from '../../store/review';
 import CreateReviewModal from '../CreateReviewModal';
 import UpdateReviewModal from '../UpdateReviewModal';
+import './singlelocation.css';
 
 const SingleLocation = () => {
     const dispatch = useDispatch();
@@ -58,27 +59,27 @@ const SingleLocation = () => {
 
     return (
         <>
-            <h1>Single Location</h1>
             {isLoaded && (
                 <div className='single-location-entire'>
                     <div className='single-location-parent'>
-                        <div>{location?.name}</div>
-                        <div>{location?.city}, {location?.state}, {location?.country} {editButton} {deleteButton}</div>
-                        <div className='image-container'>
+                        <div className='single-location-name'>{location?.name}</div>
+                        <div className='single-location-area'>{location?.city}, {location?.state}, {location?.country} {editButton} {deleteButton}</div>
+                        <div className='single-image-container'>
                             {location?.images.map((image, idx) => (
-                                <img src={image.image_url} key={idx}/>
+                                <img src={image.image_url} key={idx} className='single-location-images'/>
                             ))}
                         </div>
-
                         <div className='single-location-bottom'>
-                            <div className='single-location-owner-info'>
-                                {`Entire Location Hosted By ${location?.user.first_name} ${location?.user.last_name}`}
+                            <div className='single-location-owner-and-pic'>
+                                <div className='single-location-owner-info'>
+                                    {`Entire Location Hosted By ${location?.user.first_name} ${location?.user.last_name}`}
+                                </div>
+                                <span className='single-location-owner-propic'>
+                                    <img className='owner-propic' src={location?.user.propic_url}/>
+                                </span>
                             </div>
-                            <span className='single-location-owner-propic'>
-                                <img className='owner-propic' src={location?.user.propic_url}/>
-                            </span>
                             <div className='single-location-amenities'>{`${location?.amenities}`}</div>
-                            <div className='single-location-about'>About the location</div>
+                            <div className='single-location-about'>About the location:</div>
                             <div className='single-location-description'>{`${location?.description}`}</div>
                             <div className='single-location-offers'>What this place offers</div>
                             <div className='single-location-offers-parent'>
