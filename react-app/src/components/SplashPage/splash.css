@@ -1,0 +1,88 @@
+.splash-container {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    height: 98vh;
+    align-items: center;
+    background-image: url("https://cdn.pixabay.com/photo/2020/06/23/20/23/airplane-cartoon-5333775_1280.jpg");
+    object-fit: fill;
+}
+
+.splash-login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 400px;
+    height: 400px;
+    border: 1px solid lightgray;
+    padding-bottom: 30px;
+    padding-top: 25px;
+    margin-top: 50px;
+    margin-left: 10px;
+    background-color: white;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.splash-signup {
+    border: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    margin-left: 10px;
+    background-color: white;
+    margin-top: 10px;
+    height: 80px;
+}
+
+.splash-signup-redirect {
+    text-decoration: none;
+}
+
+.splash-message {
+    padding-bottom: 10px;
+    font-size: 20px;
+    text-align: center;
+    /* font-family: Montserrat; */
+    font-family: 'Montserrat', sans-serif;
+    color: #8E8E8E;
+    font-weight: 300;
+    padding-top: 20px;
+}
+
+.demo-button {
+    height: 50px;
+    width: 300px;
+    border: none;
+    margin-top: 30px;
+    background-color: lightcoral;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%);
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.splash-getaway {
+    font-size: 35px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.login-form-input {
+    color: rgb(34,34,34);
+    display: inline-block;
+    text-align: start;
+    width: 290px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 20px;
+    /* margin-bottom: 10px; */
+    border-radius: 5px;
+}

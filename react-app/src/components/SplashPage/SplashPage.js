@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {NavLink, useHistory} from 'react-router-dom';
 import  LoginForm  from '../auth/LoginForm'
 import { login } from '../../store/session'
+import './splash.css';
 
 
 const SplashPage = () => {
@@ -22,21 +23,20 @@ const SplashPage = () => {
             <div>
                 <div className='splash-login-container'>
                     <div className='splash-getaway'>
-                        GetAway
+                        Welcome to GetAway
                     </div>
                     <LoginForm />
                     <div>
                         <button onClick={handleDemo} className='demo-button'>Demo Login</button>
                     </div>
-                    <h3 className='splash-message'>
+                    <p className='splash-message'>
                         Get Away from life and find an adventure!
-                    </h3>
+                    </p>
                 </div>
                 <div className='splash-signup'>
                     <div>
                         <span>
-                            <span>Don't have an account?</span>
-                            <NavLink to='/signup' className={'splash-signup-redirect'}>Sign up</NavLink>
+                            <NavLink to='/signup' className={'splash-signup-redirect'}>Continue with email</NavLink>
                         </span>
                     </div>
                 </div>

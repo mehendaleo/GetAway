@@ -33,32 +33,39 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <form onSubmit={onLogin} className='login-form'>
       <div>
-        {errors.map((error, ind) => (
+        {/* {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
-        ))}
+        ))} */}
+        {errors.length > 0 && (
+          <div>Invalid Credentials</div>
+        )}
       </div>
       <div>
-        <label htmlFor='email'>Email</label>
+        <label htmlFor='email'></label>
         <input
           name='email'
           type='text'
           placeholder='Email'
           value={email}
           onChange={updateEmail}
+          className='login-form-input'
         />
       </div>
       <div>
-        <label htmlFor='password'>Password</label>
+        <label htmlFor='password'></label>
         <input
           name='password'
           type='password'
           placeholder='Password'
           value={password}
           onChange={updatePassword}
+          className='login-form-input'
         />
-        <button type='submit'>Login</button>
+      </div>
+      <div>
+          <button type='submit' className='demo-button'>Login</button>
       </div>
     </form>
   );
