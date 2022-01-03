@@ -14,7 +14,8 @@ nav {
 
 .nav-right {
     display: flex;
-    font-family: 'Kids Club', sans-serif;
+    font-family: 'Moon Dance', cursive;
+    font-size: 20px;
     /* padding-right: 10px; */
     /* justify-content: space-around; */
 }
@@ -29,7 +30,7 @@ nav {
 }
 
 .nav-logo {
-    font-family: 'Kids Club', sans-serif;
+    font-family: 'Moon Dance', cursive;
     color: rgb(255, 56, 92);
     font-size: 45px;
 }
