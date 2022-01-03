@@ -48,6 +48,22 @@ Includes:
 * redux-thunk
 * react-scripts
 
+## How to use this application
+* Clone this repository
+* Install dependencies using 
+``` pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt ```
+* Create a .env based on the example
+* Set up your postgres database using .env variables
+* Enter the pip shell, migrate and seed the database, and then run the flask app using 
+```pipenv shell``` 
+```flask db upgrade```
+```flask seed all```
+```flask run```
+* To run the React App, cd into the react folder using 
+```cd react-app```
+then run ```npm install```
+then run ```npm start```
+
 ## Splash Page
 When a user visits the website, they are prompted to either login using their credentials, login using the demo login, or create a new account. Either logging in or using the demo login will redirect the logged in user to the home page.
 
