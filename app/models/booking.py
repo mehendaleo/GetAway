@@ -17,7 +17,7 @@ class Booking(db.Model):
             'location_id',
             'date',
             name='booking_date'
-        )
+        ),
     )
 
     def to_dict(self):
