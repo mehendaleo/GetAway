@@ -1,4 +1,5 @@
 from .db import db
+from sqlalchemy import UniqueConstraint
 
 class Booking(db.Model):
     __tablename__ = 'bookings'
@@ -10,3 +11,19 @@ class Booking(db.Model):
 
     user = db.relationship('User', back_populates='booking')
     location = db.relationship('Location', back_populates='booking')
+
+    __table_args__ = (
+        UniqueConstraint(
+            'location_id',
+            'date',
+            name='booking_date'
+        )
+    )
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'location_id': self.location_id,
+            'date': self.date
+        }
