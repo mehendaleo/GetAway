@@ -28,7 +28,7 @@ const SearchArea = () => {
             <div style={style} className='search-results'>
                 {(search !== '') && (results?.map((location, i) => (
                     <a key={i} href={`/locations/${location.id}`} className='search-each-result'>
-                        <img src={location?.images[0].image_url} className='search-res-img'/>
+                        <img src={location?.images[0].image_url} className='search-res-img' alt='search-location'/>
                         <div>
                             {location?.name}
                         </div>

@@ -19,7 +19,7 @@ const Charleston = () => {
                         <div key={i} className='explore-map-locations'>
                             <div>
                                 <a href={`/locations/${location?.id}`}>
-                                    <img className="explore-image" src={location.images[0].image_url} alt='image'/>
+                                    <img className="explore-image" src={location.images[0].image_url} alt='charleston-images'/>
                                 </a>
                             </div>
                             <div>

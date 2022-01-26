@@ -10,7 +10,6 @@ const EditLocation = () => {
     const history = useHistory();
     const id = useParams().location_id;
     const user_id = useSelector(state => state.session.user.id)
-    const [isLoaded, setIsLoaded] = useState(false);
 
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
@@ -24,7 +23,6 @@ const EditLocation = () => {
 
     useEffect(async() => {
         await dispatch(getSingleLocationThunk(id));
-        await setIsLoaded(true)
     }, [dispatch, id]);
 
 

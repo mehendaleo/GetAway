@@ -3,11 +3,9 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import CreateLocationFormModal from './CreateLocationModal';
 import SearchArea from './Search';
-import { useSelector } from 'react-redux';
 import './rest.css'
 
 const NavBar = () => {
-  const sessionUser = useSelector(state => state.session.user)
 
   return (
     <nav>

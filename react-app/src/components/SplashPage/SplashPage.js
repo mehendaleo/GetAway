@@ -1,5 +1,4 @@
-import {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {NavLink, useHistory} from 'react-router-dom';
 import  LoginForm  from '../auth/LoginForm'
 import { login } from '../../store/session'
@@ -9,7 +8,6 @@ import './splash.css';
 const SplashPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const user = useSelector(state => state.session.user)
 
     const handleDemo = async() => {
         const email = 'demo@demolition.io';

@@ -61,7 +61,7 @@ export const deleteBookingThunk = (booking_id) => async (dispatch) => {
         method: 'DELETE'
     });
     if (response.ok) {
-        const data = await response.json()
+        await response.json()
         dispatch(deleteBooking(booking_id))
     }
 };

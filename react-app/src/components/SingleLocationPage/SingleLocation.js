@@ -11,7 +11,6 @@ const SingleLocation = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const location_id = useParams().location_id;
-    const user = useSelector(state => state.session.user);
     const location = useSelector(state => state.location);
     const reviews = useSelector(state => Object.values(state.review));
     const sessionUser = useSelector(state => state.session.user);
@@ -66,7 +65,7 @@ const SingleLocation = () => {
                         <div className='single-location-area'>{location?.city}, {location?.state}, {location?.country} {editButton} {deleteButton}</div>
                         <div className='single-image-container'>
                             {location?.images.map((image, idx) => (
-                                <img src={image.image_url} key={idx} className='single-location-images'/>
+                                <img src={image.image_url} key={idx} className='single-location-images' alt='location-picture'/>
                             ))}
                         </div>
                         <div className='single-location-bottom'>
@@ -75,7 +74,7 @@ const SingleLocation = () => {
                                     {`Entire Location Hosted By ${location?.user.first_name} ${location?.user.last_name}`}
                                 </div>
                                 <span className='single-location-owner-propic'>
-                                    <img className='owner-propic' src={location?.user.propic_url}/>
+                                    <img className='owner-propic' src={location?.user.propic_url} alt='owner'/>
                                 </span>
                             </div>
                             <div className='single-location-amenities'>{`${location?.amenities}`}</div>
@@ -100,7 +99,7 @@ const SingleLocation = () => {
                             {reviews?.map((review, idx) => (
                                 <div key={idx} className='single-location-review'>
                                     <div className='review-info'>
-                                        <img src={review?.user?.propic_url} className='review-info-pic'/>
+                                        <img src={review?.user?.propic_url} className='review-info-pic' alt='review-owner'/>
                                         <span className='review-info-content'>{`${review?.user?.first_name} ${review?.user?.last_name}`}</span>
                                         {review?.user?.id === sessionUser.id ? <span><UpdateReviewModal id={review.id}/></span> : null}
                                         {review?.user?.id === sessionUser.id ? <span><button className='single-location-delete' onClick={() => handleDeleteReview(review.id)}>Delete Review</button></span> : null}

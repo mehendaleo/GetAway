@@ -19,7 +19,7 @@ const Tampa = () => {
                         <div key={i} className='explore-map-locations'>
                             <div>
                                 <a href={`/locations/${location?.id}`}>
-                                    <img className="explore-image" src={location.images[0].image_url} alt='image'/>
+                                    <img className="explore-image" src={location.images[0].image_url} alt='tampa-locations'/>
                                 </a>
                             </div>
                             <div>
