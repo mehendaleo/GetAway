@@ -6,6 +6,8 @@ import { loadReviewsThunk, deleteReviewThunk } from '../../store/review';
 import CreateReviewModal from '../CreateReviewModal';
 import UpdateReviewModal from '../UpdateReviewModal';
 import './singlelocation.css';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const SingleLocation = () => {
     const dispatch = useDispatch();
@@ -94,6 +96,7 @@ const SingleLocation = () => {
                                 <div className='single-location-offers-children'>Security cameras on property</div>
                             </div>
                         </div>
+                        <Calendar />
                         <CreateReviewModal />
                         <div className='single-location-reviews-container'>
                             {reviews?.map((review, idx) => (
