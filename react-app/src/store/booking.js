@@ -54,4 +54,45 @@ export const addNewBooking = (booking) => async (dispatch) => {
     } else {
         return ['Server Error'];
     }
-}
+};
+
+export const deleteBookingThunk = (booking_id) => async (dispatch) => {
+    const response = await fetch(`/api/bookings/${booking_id}`, {
+        method: 'DELETE'
+    });
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(deleteBooking(booking_id))
+    }
+};
+
+// reducer
+const initialState = {};
+const booking = (state = initialState, action) => {
+    switch (action.type) {
+        case LOAD_BOOKINGS: {
+            const newState = {...state};
+            for (let booking in action.payload.bookings) {
+                newState[booking.id] = booking
+            }
+            return newState
+        }
+        case ADD_BOOKING: {
+            const newState = {
+                ...state,
+                [action.payload.id]: action.payload
+            };
+            return newState
+        }
+        case DELETE_BOOKING: {
+            const newState = {...state};
+            delete newState[action.payload];
+            return newState;
+        }
+        default: {
+            return state
+        }
+    }
+};
+
+export default booking;

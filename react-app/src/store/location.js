@@ -144,6 +144,6 @@ const location = (state = initialState, action) => {
             return state;
         }
     }
-}
+};
 
 export default location;
