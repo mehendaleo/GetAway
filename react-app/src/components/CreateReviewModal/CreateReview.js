@@ -11,6 +11,12 @@ const CreateReview = ({hideForm}) => {
     const location_id = useParams().location_id
     const [content, setContent] = useState('');
     const [errors, setErrors] = useState([]);
+    const [val, setVal] = useState(0);
+    const [reviews, setReviews] = useState(useSelector(state => Object.values(state.review)))
+
+    // const forceUpdate = () => {
+    //     return () => setVal(val => val+1)
+    // }
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -23,8 +29,11 @@ const CreateReview = ({hideForm}) => {
         setErrors([]);
         let data = await dispatch(addReviewThunk(review));
         if (!data) {
+            setReviews([...reviews, review])
             hideForm();
-            return history.push(`/explore`)
+            // return history.push(`/explore`)
+            // forceUpdate();
+
         } else {
             setErrors(data)
         }
