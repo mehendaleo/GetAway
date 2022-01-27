@@ -12,7 +12,7 @@ const HomePage = () => {
     return (
         <div className='home-container'>
             <div className='home-image-div'>
-                <img className='home-image' src='https://blog.trello.com/hs-fs/The_Etiquette_Of_Taking_Time_Off_V2.png'/>
+                <img className='home-image' src='https://blog.trello.com/hs-fs/The_Etiquette_Of_Taking_Time_Off_V2.png' alt='take-time-off'/>
             </div>
             <div className='home-explore-all'>Not sure where to go? Perfect</div>
             <div>
@@ -25,7 +25,7 @@ const HomePage = () => {
                 <div className='Tampa'>
                     <div className='Tampa-redirect'>
                         <a className='Tampa-link' href='/tampa'>
-                            <img className='tampa-icon' src='https://res.cloudinary.com/duscvhetx/image/upload/v1641187892/tampa/tampa-icon_brnbsa.png'/>
+                            <img className='tampa-icon' src='https://res.cloudinary.com/duscvhetx/image/upload/v1641187892/tampa/tampa-icon_brnbsa.png' alt='tampa'/>
                         </a>
                         <span className='Tampa-title'>Tampa</span>
                     </div>
@@ -33,7 +33,7 @@ const HomePage = () => {
                 <div className='Miami'>
                     <div className='Miami-redirect'>
                         <a className='Miami-link' href='/miami'>
-                            <img className='miami-icon' src='https://res.cloudinary.com/duscvhetx/image/upload/v1641187884/miami/miami-icon_joky6a.jpg'/>
+                            <img className='miami-icon' src='https://res.cloudinary.com/duscvhetx/image/upload/v1641187884/miami/miami-icon_joky6a.jpg' alt='miami'/>
                         </a>
                         <span className='Miami-title'>Miami</span>
                     </div>
@@ -41,7 +41,7 @@ const HomePage = () => {
                 <div className='Charleston'>
                     <div className='Charleston-redirect'>
                         <a className='Charleston-link' href='/charleston'>
-                            <img className='charleston-icon' src='https://res.cloudinary.com/duscvhetx/image/upload/v1641187866/charleston/charleston-icon_x9xvj1.png'/>
+                            <img className='charleston-icon' src='https://res.cloudinary.com/duscvhetx/image/upload/v1641187866/charleston/charleston-icon_x9xvj1.png' alt='charleston'/>
                         </a>
                         <span className='Charleston-title'>Charleston</span>
                     </div>
@@ -49,16 +49,19 @@ const HomePage = () => {
                 <div className='Charlotte'>
                     <div className='Charlotte-redirect'>
                         <a className='Charlotte-link' href='/charlotte'>
-                            <img className='charlotte-icon' src='https://res.cloudinary.com/duscvhetx/image/upload/v1641187874/charlotte/charlotte-icon_wsplb1.png'/>
+                            <img className='charlotte-icon' src='https://res.cloudinary.com/duscvhetx/image/upload/v1641187874/charlotte/charlotte-icon_wsplb1.png' alt='charlotte'/>
                         </a>
                         <span className='Charlotte-title'>Charlotte</span>
                     </div>
                 </div>
             </div>
             <div className='home-info'>
-                <a className='home-name'>
+                {/* <a className='home-name'>
                     Omkar Mehendale
-                </a>
+                </a> */}
+                <span className='home-name'>
+                    Omkar Mehendale
+                </span>
                 <a className='home-linkedin' href='https://www.linkedin.com/in/omkar-mehendale-4a8879153/'>
                     LinkedIn
                 </a>

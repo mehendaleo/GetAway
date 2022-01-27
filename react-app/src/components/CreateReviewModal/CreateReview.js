@@ -11,7 +11,6 @@ const CreateReview = ({hideForm}) => {
     const location_id = useParams().location_id
     const [content, setContent] = useState('');
     const [errors, setErrors] = useState([]);
-    const [val, setVal] = useState(0);
     const [reviews, setReviews] = useState(useSelector(state => Object.values(state.review)))
 
     // const forceUpdate = () => {
@@ -31,7 +30,7 @@ const CreateReview = ({hideForm}) => {
         if (!data) {
             setReviews([...reviews, review])
             hideForm();
-            // return history.push(`/explore`)
+            return history.push(`/explore`)
             // forceUpdate();
 
         } else {

@@ -16,6 +16,7 @@ class Location(db.Model):
     user = db.relationship('User', back_populates='location')
     image = db.relationship('Image', back_populates='location', cascade="all, delete-orphan")
     review = db.relationship('Review', back_populates='location', cascade="all, delete-orphan")
+    booking = db.relationship('Booking', back_populates='location', cascade="all, delete-orphan")
 
 
 
