@@ -96,14 +96,18 @@ const SingleLocation = () => {
                                 <div className='single-location-offers-children'>Security cameras on property</div>
                             </div>
                         </div>
-                        <Calendar />
+                        <div className='calendar-div'>
+                            <Calendar />
+                        </div>
                         <CreateReviewModal />
                         <div className='single-location-reviews-container'>
                             {reviews?.map((review, idx) => (
                                 <div key={idx} className='single-location-review'>
                                     <div className='review-info'>
-                                        <img src={review?.user?.propic_url} className='review-info-pic' alt='review-owner'/>
-                                        <span className='review-info-content'>{`${review?.user?.first_name} ${review?.user?.last_name}`}</span>
+                                        <div className='review-name-picture-div'>
+                                            <img src={review?.user?.propic_url} className='review-info-pic' alt='review-owner'/>
+                                            <span className='review-info-content'>{`${review?.user?.first_name} ${review?.user?.last_name}`}</span>
+                                        </div>
                                         {review?.user?.id === sessionUser.id ? <span><UpdateReviewModal id={review.id}/></span> : null}
                                         {review?.user?.id === sessionUser.id ? <span><button className='single-location-delete' onClick={() => handleDeleteReview(review.id)}>Delete Review</button></span> : null}
                                     </div>
