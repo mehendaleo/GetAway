@@ -4,6 +4,7 @@ from flask_login import login_required
 from app.api.auth_routes import login
 from app.models import Location, Image, booking, db, Booking
 from app.forms import LocationForm, UpdateLocationForm, BookingForm
+from datetime import datetime
 # from operator import or_
 # from sqlalchemy import or_
 
@@ -21,12 +22,12 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 # scheduled bookings for specific location
-@booking_routes.route('/locations/<int:location_id>')
+@booking_routes.route('/<int:location_id>')
 # @login_required
 def location_bookings(location_id):
     bookings = Booking.query.filter(Booking.location_id == location_id).all()
     return {
-        'bookings': {booking.to_dict() for booking in bookings}
+        'bookings': {booking.to_dict()['id']: booking.to_dict() for booking in bookings}
     }
 
 
@@ -46,11 +47,17 @@ def user_bookings(user_id):
 def new_booking():
     form = BookingForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print('---------------outside')
     if form.validate_on_submit():
+        print('------------------ inside')
+        start_date = datetime.strptime(form.data['start_date'], '%Y-%m-%dT%H:%M:%S.%fZ')
+        end_date = datetime.strptime(form.data['end_date'], '%Y-%m-%dT%H:%M:%S.%fZ')
         booking = Booking(
             user_id = form.data['user_id'],
             location_id = form.data['location_id'],
-            date = form.data['date']
+            start_date = start_date,
+            end_date = end_date,
+            guests = form.data['guests'],
         )
         db.session.add(booking)
         db.session.commit()

@@ -6,8 +6,13 @@ import { loadReviewsThunk, deleteReviewThunk } from '../../store/review';
 import CreateReviewModal from '../CreateReviewModal';
 import UpdateReviewModal from '../UpdateReviewModal';
 import './singlelocation.css';
+
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+
+import { addNewBooking } from '../../store/booking';
+
+
 
 const SingleLocation = () => {
     const dispatch = useDispatch();
@@ -17,6 +22,12 @@ const SingleLocation = () => {
     const reviews = useSelector(state => Object.values(state.review));
     const sessionUser = useSelector(state => state.session.user);
     const [isLoaded, setIsLoaded] = useState(false)
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(startDate);
+
+    useEffect(() => {
+        console.log(endDate, endDate.toJSON());
+    }, [startDate, endDate])
 
     useEffect(async() => {
         await dispatch(getSingleLocationThunk(location_id));
@@ -32,6 +43,24 @@ const SingleLocation = () => {
     const handleDeleteReview = (id) => {
         dispatch(deleteReviewThunk(id));
         // history.push('/')
+    }
+
+    const handleBooking = async(e) => {
+        e.preventDefault();
+
+        // const [startYear, startMonth, startDay] = startDate.toISOString().split('T')[0].split('-');
+        // const [endYear, endMonth, endDay] = endDate.toISOString().split('T')[0].split('-');
+
+
+        const booking = {
+            user_id: sessionUser.id,
+            location_id,
+            start_date: startDate.toJSON(),
+            end_date: endDate.toJSON(),
+            guests: 1
+        }
+
+        await dispatch(addNewBooking(booking))
     }
 
     let editButton;
@@ -97,7 +126,13 @@ const SingleLocation = () => {
                             </div>
                         </div>
                         <div className='calendar-div'>
-                            <Calendar />
+                            <Calendar selectRange={true} onChange={([start, end]) => {
+                                setStartDate(start);
+                                setEndDate(end)
+                            }}/>
+                            <button onClick={handleBooking}>
+                                Reserve
+                            </button>
                         </div>
                         <CreateReviewModal />
                         <div className='single-location-reviews-container'>
