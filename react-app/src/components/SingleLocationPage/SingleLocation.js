@@ -26,14 +26,17 @@ const SingleLocation = () => {
     const [endDate, setEndDate] = useState(startDate);
 
     useEffect(() => {
-        console.log(endDate, endDate.toJSON());
+        console.log(endDate.getTimezoneOffset(),endDate, endDate.toJSON());
     }, [startDate, endDate])
+
+    useEffect(() => {
+        dispatch(loadReviewsThunk(location_id))
+    },[dispatch])
 
     useEffect(async() => {
         await dispatch(getSingleLocationThunk(location_id));
-        await dispatch(loadReviewsThunk(location_id));
         await setIsLoaded(true)
-    }, [dispatch, location_id]);
+    }, [dispatch]);
 
     const handleDelete = () => {
         dispatch(deleteLocationThunk(location_id));
@@ -55,8 +58,10 @@ const SingleLocation = () => {
         const booking = {
             user_id: sessionUser.id,
             location_id,
-            start_date: startDate.toJSON(),
-            end_date: endDate.toJSON(),
+            start_date: startDate.toDateString(),
+            // start_date: (startDate.getTime() - (startDate.getTimezoneOffset() * 60000)).toJSON(),
+            end_date: endDate.toDateString(),
+            // end_date: (endDate.getTime() - (endDate.getTimezoneOffset() * 60000)).toJSON(),
             guests: 1
         }
 
