@@ -66,6 +66,7 @@ const SingleLocation = () => {
         }
 
         await dispatch(addNewBooking(booking))
+        history.push('/bookings')
     }
 
     let editButton;
@@ -135,7 +136,7 @@ const SingleLocation = () => {
                                 setStartDate(start);
                                 setEndDate(end)
                             }}/>
-                            <button onClick={handleBooking}>
+                            <button onClick={handleBooking} className='logout-button'>
                                 Reserve
                             </button>
                         </div>
@@ -149,7 +150,7 @@ const SingleLocation = () => {
                                             <span className='review-info-content'>{`${review?.user?.first_name} ${review?.user?.last_name}`}</span>
                                         </div>
                                         {review?.user?.id === sessionUser.id ? <span><UpdateReviewModal id={review.id}/></span> : null}
-                                        {review?.user?.id === sessionUser.id ? <span><button className='single-location-delete' onClick={() => handleDeleteReview(review.id)}>Delete Review</button></span> : null}
+                                        {review?.user?.id === sessionUser.id ? <span><button className='logout-button' onClick={() => handleDeleteReview(review.id)}>Delete Review</button></span> : null}
                                     </div>
                                     <div className='review-content'>
                                         {review?.content}

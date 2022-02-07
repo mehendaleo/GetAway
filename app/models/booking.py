@@ -28,8 +28,8 @@ class Booking(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'user_id': self.user_id,
-            'location_id': self.location_id,
+            'user': self.user.to_dict(),
+            'location': self.location.to_dict(),
             'start_date': self.start_date,
             'end_date': self.end_date,
             'guests': self.guests

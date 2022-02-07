@@ -37,7 +37,7 @@ def location_bookings(location_id):
 def user_bookings(user_id):
     bookings = Booking.query.filter(Booking.user_id == user_id).all()
     return {
-        'bookings': {booking.to_dict() for booking in bookings}
+        'bookings': {booking.to_dict()['id']: booking.to_dict() for booking in bookings}
     }
 
 
@@ -47,16 +47,14 @@ def user_bookings(user_id):
 def new_booking():
     form = BookingForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('---------------outside')
     if form.validate_on_submit():
-        print('------------------ inside')
-        start_date = datetime.strptime(form.data['start_date'], '%Y-%m-%dT%H:%M:%S.%fZ')
-        end_date = datetime.strptime(form.data['end_date'], '%Y-%m-%dT%H:%M:%S.%fZ')
+        # start_date = datetime.strptime(form.data['start_date'], '%Y-%m-%dT%H:%M:%S.%fZ')
+        # end_date = datetime.strptime(form.data['end_date'], '%Y-%m-%dT%H:%M:%S.%fZ')
         booking = Booking(
             user_id = form.data['user_id'],
             location_id = form.data['location_id'],
-            start_date = start_date,
-            end_date = end_date,
+            start_date = form.data['start_date'],
+            end_date = form.data['end_date'],
             guests = form.data['guests'],
         )
         db.session.add(booking)

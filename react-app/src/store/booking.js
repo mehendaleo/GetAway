@@ -71,10 +71,15 @@ const initialState = {};
 const booking = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_BOOKINGS: {
-            const newState = {...state};
-            for (let booking in action.payload.bookings) {
-                newState[booking.id] = booking
-            }
+            // const newState = {...state};
+            // for (let booking in action.payload.bookings) {
+            //     newState[booking.id] = booking
+            // }
+            const newState = {
+                ...state,
+                ...action.payload.bookings
+            };
+
             return newState
         }
         case ADD_BOOKING: {

@@ -8,16 +8,17 @@ import './rest.css'
 const NavBar = () => {
 
   return (
-    <nav>
+    <nav >
       <div>
         <NavLink to='/' exact={true} className={'nav-home-redirect'}>
           <div className='nav-logo'>GetAway</div>
         </NavLink>
       </div>
-      <div className='search-div'>
-        <SearchArea />
-      </div>
+      <SearchArea />
       <div className='nav-right'>
+        <NavLink to='/bookings' exact={true} className={'bookings-redirect'}>
+          Bookings
+        </NavLink>
         <CreateLocationFormModal />
         <LogoutButton />
       </div>

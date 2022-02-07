@@ -8,7 +8,7 @@ const UpdateReviewModal = ({id}) => {
 
     return (
         <>
-            <button onClick={() => setShow(true)}>Update your review</button>
+            <button onClick={() => setShow(true)} className='logout-button'>Update your review</button>
             {show && (
                 <Modal onClose={() => setShow(false)}>
                     <UpdateReview hideForm={hideForm} id={id}/>

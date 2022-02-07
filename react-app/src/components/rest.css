@@ -36,19 +36,20 @@ nav {
 }
 
 .search-div {
-    position: relative;
+    /* position: relative;
     width: 300px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; */
 }
 
 .search-input {
-    width: 100%;
+    width: 300px;
     height: 48px;
     padding-left: 18px;
     display: flex;
     border-radius: 40px;
     border: 1px solid rgb(231, 224, 224);
+    outline: none
 }
 
 .search-results {
@@ -58,7 +59,10 @@ nav {
     max-height: 200px;
     position: relative;
     display: inline-block;
+    top: 100px;
+    border: 1px black;
     /* margin-top: 50px; */
+    width: 300px;
 }
 
 .search-each-result {
@@ -80,8 +84,11 @@ nav {
 }
 
 .search-parent {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
+    position: relative; */
+    top: 100px;
+    position: sticky
 }
 
 .create-host {
@@ -93,4 +100,9 @@ nav {
 .create-host-parent {
     display: flex;
     align-items: center;
+}
+
+.bookings-redirect {
+    text-decoration: none;
+    margin-right: 10px;
 }
