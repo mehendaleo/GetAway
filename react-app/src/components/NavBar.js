@@ -14,7 +14,9 @@ const NavBar = () => {
           <div className='nav-logo'>GetAway</div>
         </NavLink>
       </div>
-      <SearchArea />
+      <div className='search-div-container'>
+        <SearchArea />
+      </div>
       <div className='nav-right'>
         <NavLink to='/bookings' exact={true} className={'bookings-redirect'}>
           Bookings
