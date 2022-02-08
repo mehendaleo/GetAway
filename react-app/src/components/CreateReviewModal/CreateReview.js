@@ -30,13 +30,13 @@ const CreateReview = ({hideForm}) => {
         if (!data) {
             setReviews([...reviews, review])
             hideForm();
-            return history.push(`/explore`)
+            // return history.push(`/explore`)
             // forceUpdate();
-
         } else {
             setErrors(data)
         }
 
+        window.location.reload(true)
     };
 
     return (

@@ -9,7 +9,10 @@ const CreateReviewModal = () => {
 
     return (
         <>
-            <button onClick={() => setShow(true)}>Leave a review</button>
+            <br></br>
+            <br></br>
+            <br></br>
+            <button onClick={() => setShow(true)} className='logout-button'>Leave a review</button>
             {show && (
                 <Modal onClose={() => setShow(false)}>
                     <CreateReview hideForm={hideForm}/>

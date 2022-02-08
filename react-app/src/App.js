@@ -17,6 +17,7 @@ import Tampa from './components/Locations/Tampa/Tampa';
 import Miami from './components/Locations/Miami/Miami';
 import EditLocation from './components/EditLocation/EditLocation';
 import { authenticate } from './store/session';
+import Bookings from './components/Bookings/Bookings';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -67,6 +68,9 @@ function App() {
           </ProtectedRoute>
           <Route path='/explore' exact={true}>
             <Explore />
+          </Route>
+          <Route path='/bookings' exact={true}>
+            <Bookings />
           </Route>
           <ProtectedRoute path='/' exact={true} >
             <HomePage />

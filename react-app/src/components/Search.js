@@ -19,13 +19,14 @@ const SearchArea = () => {
         <div className='search-parent'>
             <input
                 placeholder='Search'
-                type='search'
+                type='text'
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 onClick={() => setStyle({visibility: 'visible'})}
+                // onBlur={() => setStyle({visibility: 'hidden'})}
                 className='search-input'
             />
-            <div style={style} className='search-results'>
+            <div style={style} className='search-results' onBlur={() => setStyle({visibility: 'hidden'})}>
                 {(search !== '') && (results?.map((location, i) => (
                     <a key={i} href={`/locations/${location.id}`} className='search-each-result'>
                         <img src={location?.images[0].image_url} className='search-res-img' alt='search-location'/>

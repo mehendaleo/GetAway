@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .location import seed_locations, undo_locations
 from .images import seed_images, undo_images
 from .review import seed_reviews, undo_reviews
+from .booking import seed_bookings, undo_bookings
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -16,6 +17,7 @@ def seed():
     seed_locations()
     seed_images()
     seed_reviews()
+    seed_bookings()
     # Add other seed functions here
 
 
@@ -26,4 +28,5 @@ def undo():
     undo_locations()
     undo_images()
     undo_reviews()
+    undo_bookings()
     # Add other undo functions here

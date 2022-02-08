@@ -1,0 +1,55 @@
+.booking-container {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: space-around;
+    box-sizing: border-box;
+}
+
+.booking-image {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.booking-delete {
+    /* padding-top: 100px; */
+    /* margin-top: 100px; */
+}
+
+.bookings-parent-container {
+    display: flex;
+}
+
+.google-maps-container {
+    box-sizing: border-box;
+    padding-left: 300px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.all-bookings-container {
+    box-sizing: border-box;
+    width: 50%;
+    border: 3px black;
+}
+
+.pro-book-info {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.pro-book-img-date {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.booking-date {
+    padding-left:30px;
+}

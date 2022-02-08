@@ -6,8 +6,13 @@ import { loadReviewsThunk, deleteReviewThunk } from '../../store/review';
 import CreateReviewModal from '../CreateReviewModal';
 import UpdateReviewModal from '../UpdateReviewModal';
 import './singlelocation.css';
+
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+
+import { addNewBooking } from '../../store/booking';
+
+
 
 const SingleLocation = () => {
     const dispatch = useDispatch();
@@ -17,12 +22,21 @@ const SingleLocation = () => {
     const reviews = useSelector(state => Object.values(state.review));
     const sessionUser = useSelector(state => state.session.user);
     const [isLoaded, setIsLoaded] = useState(false)
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(startDate);
+
+    useEffect(() => {
+        console.log(endDate.getTimezoneOffset(),endDate, endDate.toJSON());
+    }, [startDate, endDate])
+
+    useEffect(() => {
+        dispatch(loadReviewsThunk(location_id))
+    },[dispatch])
 
     useEffect(async() => {
         await dispatch(getSingleLocationThunk(location_id));
-        await dispatch(loadReviewsThunk(location_id));
         await setIsLoaded(true)
-    }, [dispatch, location_id]);
+    }, [dispatch]);
 
     const handleDelete = () => {
         dispatch(deleteLocationThunk(location_id));
@@ -32,6 +46,27 @@ const SingleLocation = () => {
     const handleDeleteReview = (id) => {
         dispatch(deleteReviewThunk(id));
         // history.push('/')
+    }
+
+    const handleBooking = async(e) => {
+        e.preventDefault();
+
+        // const [startYear, startMonth, startDay] = startDate.toISOString().split('T')[0].split('-');
+        // const [endYear, endMonth, endDay] = endDate.toISOString().split('T')[0].split('-');
+
+
+        const booking = {
+            user_id: sessionUser.id,
+            location_id,
+            start_date: startDate.toDateString(),
+            // start_date: (startDate.getTime() - (startDate.getTimezoneOffset() * 60000)).toJSON(),
+            end_date: endDate.toDateString(),
+            // end_date: (endDate.getTime() - (endDate.getTimezoneOffset() * 60000)).toJSON(),
+            guests: 1
+        }
+
+        await dispatch(addNewBooking(booking))
+        history.push('/bookings')
     }
 
     let editButton;
@@ -96,16 +131,26 @@ const SingleLocation = () => {
                                 <div className='single-location-offers-children'>Security cameras on property</div>
                             </div>
                         </div>
-                        <Calendar />
+                        <div className='calendar-div'>
+                            <Calendar selectRange={true} onChange={([start, end]) => {
+                                setStartDate(start);
+                                setEndDate(end)
+                            }}/>
+                            <button onClick={handleBooking} className='logout-button'>
+                                Reserve
+                            </button>
+                        </div>
                         <CreateReviewModal />
                         <div className='single-location-reviews-container'>
                             {reviews?.map((review, idx) => (
                                 <div key={idx} className='single-location-review'>
                                     <div className='review-info'>
-                                        <img src={review?.user?.propic_url} className='review-info-pic' alt='review-owner'/>
-                                        <span className='review-info-content'>{`${review?.user?.first_name} ${review?.user?.last_name}`}</span>
+                                        <div className='review-name-picture-div'>
+                                            <img src={review?.user?.propic_url} className='review-info-pic' alt='review-owner'/>
+                                            <span className='review-info-content'>{`${review?.user?.first_name} ${review?.user?.last_name}`}</span>
+                                        </div>
                                         {review?.user?.id === sessionUser.id ? <span><UpdateReviewModal id={review.id}/></span> : null}
-                                        {review?.user?.id === sessionUser.id ? <span><button className='single-location-delete' onClick={() => handleDeleteReview(review.id)}>Delete Review</button></span> : null}
+                                        {review?.user?.id === sessionUser.id ? <span><button className='logout-button' onClick={() => handleDeleteReview(review.id)}>Delete Review</button></span> : null}
                                     </div>
                                     <div className='review-content'>
                                         {review?.content}
