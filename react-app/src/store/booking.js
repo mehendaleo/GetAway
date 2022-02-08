@@ -61,8 +61,9 @@ export const deleteBookingThunk = (booking_id) => async (dispatch) => {
         method: 'DELETE'
     });
     if (response.ok) {
-        await response.json()
-        dispatch(deleteBooking(booking_id))
+        console.log("------------------YOU ARE HERE")
+        let booking = await response.json()
+        dispatch(deleteBooking(booking.id))
     }
 };
 
@@ -91,7 +92,9 @@ const booking = (state = initialState, action) => {
         }
         case DELETE_BOOKING: {
             const newState = {...state};
+            console.log(newState)
             delete newState[action.payload];
+            console.log(newState)
             return newState;
         }
         default: {
