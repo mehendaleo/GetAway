@@ -14,10 +14,10 @@ const Bookings = () => {
         dispatch(loadUserBookings(sessionUser.id))
     }, [dispatch])
 
-    const handleDelete = (e,id) => {
-        e.preventDefault()
-        dispatch(deleteBookingThunk(id))
-    }
+    // const handleDelete = (e,id) => {
+    //     e.preventDefault()
+    //     dispatch(deleteBookingThunk(id))
+    // }
 
     if (bookingsArr.length > 0) return (
         <div className='bookings-parent-container'>
@@ -33,7 +33,7 @@ const Bookings = () => {
                                 <div>{b.location.name}</div>
                                 <div>{b.location.city}, {b.location.state}, {b.location.country}</div>
                             </div>
-                            <button onclick={(e) => handleDelete(e,b.id)} className='logout-button booking-delete'>Delete Booking</button>
+                            <button className='logout-button booking-delete'>Delete Booking</button>
                         </div>
                     </div>
                 ))}
