@@ -5,7 +5,7 @@ import './rest.css'
 
 const SearchArea = () => {
     const dispatch = useDispatch();
-    const results = useSelector(state => state.search?.locations);
+    const results = useSelector(state => state?.search?.locations);
     const [search, setSearch] = useState('');
     const [style, setStyle] = useState({visibility: 'hidden'})
 
@@ -15,22 +15,20 @@ const SearchArea = () => {
         }
     }, [dispatch, search])
 
-    //comment
-
     return (
-        <div className='search-parent'>
+        <>
             <input
                 placeholder='Search'
-                type='text'
+                type='search'
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 onClick={() => setStyle({visibility: 'visible'})}
                 // onBlur={() => setStyle({visibility: 'hidden'})}
                 className='search-input'
             />
-            <div style={style} className='search-results' onBlur={() => setStyle({visibility: 'hidden'})}>
-                {(search !== '') && (results?.map((location, i) => (
-                    <a key={i} href={`/locations/${location.id}`} className='search-each-result'>
+            <div style={style} className='search-results'>
+                {(search !== '') && (results?.map(location => (
+                    <a key={location.id} href={`/locations/${location.id}`} className='search-each-result'>
                         <img src={location?.images[0].image_url} className='search-res-img' alt='search-location'/>
                         <div>
                             {location?.name}
@@ -38,7 +36,7 @@ const SearchArea = () => {
                     </a>
                 )))}
             </div>
-        </div>
+        </>
     )
 };
 

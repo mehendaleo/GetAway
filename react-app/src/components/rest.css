@@ -59,7 +59,7 @@ nav {
     max-height: 200px;
     position: relative;
     display: inline-block;
-    top: 100px;
+    /* top: 0px; */
     border: 1px black;
     /* margin-top: 50px; */
     width: 300px;
@@ -83,14 +83,6 @@ nav {
     align-items: center;
 }
 
-.search-parent {
-    /* display: flex;
-    flex-direction: column;
-    position: relative; */
-    top: 100px;
-    position: sticky
-}
-
 .create-host {
     margin-right: 10px;
     cursor: pointer;
@@ -105,4 +97,8 @@ nav {
 .bookings-redirect {
     text-decoration: none;
     margin-right: 10px;
+}
+
+.search-div-container {
+    height: 48px;
 }
