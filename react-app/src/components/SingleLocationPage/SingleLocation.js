@@ -132,6 +132,7 @@ const SingleLocation = () => {
                                 setStartDate(start);
                                 setEndDate(end)
                             }}/>
+                            <br></br>
                             <button onClick={handleBooking} className='logout-button'>
                                 Reserve
                             </button>

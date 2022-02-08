@@ -26,7 +26,7 @@ const SearchArea = () => {
                 // onBlur={() => setStyle({visibility: 'hidden'})}
                 className='search-input'
             />
-            <div style={style} className='search-results'>
+            <div style={style} className='search-results' onMouseDown={() => setStyle({visibility: 'hidden'})}>
                 {(search !== '') && (results?.map(location => (
                     <a key={location.id} href={`/locations/${location.id}`} className='search-each-result'>
                         <img src={location?.images[0].image_url} className='search-res-img' alt='search-location'/>

@@ -71,9 +71,10 @@ def new_booking():
 # @login_required
 def delete_booking(booking_id):
     booking = Booking.query.get(booking_id)
+    booking_dict = booking.to_dict()
     if booking:
         db.session.delete(booking)
         db.session.commit()
-        return 'Deleted booking'
+        return booking_dict
     else:
         return 'Ya messed up'

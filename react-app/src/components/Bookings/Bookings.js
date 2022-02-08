@@ -12,12 +12,12 @@ const Bookings = () => {
 
     useEffect(() => {
         dispatch(loadUserBookings(sessionUser.id))
-    }, [dispatch])
+    }, [dispatch, bookingsArr.length])
 
-    // const handleDelete = (e,id) => {
-    //     e.preventDefault()
-    //     dispatch(deleteBookingThunk(id))
-    // }
+    const handleDelete = async(e) => {
+        console.log(e.target.value)
+        await dispatch(deleteBookingThunk(e.target.value))
+    }
 
     if (bookingsArr.length > 0) return (
         <div className='bookings-parent-container'>
@@ -33,7 +33,7 @@ const Bookings = () => {
                                 <div>{b.location.name}</div>
                                 <div>{b.location.city}, {b.location.state}, {b.location.country}</div>
                             </div>
-                            <button className='logout-button booking-delete'>Delete Booking</button>
+                            <button onClick={handleDelete} value={b.id}className='logout-button booking-delete'>Delete Booking</button>
                         </div>
                     </div>
                 ))}
