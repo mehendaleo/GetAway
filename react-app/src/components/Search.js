@@ -15,6 +15,8 @@ const SearchArea = () => {
         }
     }, [dispatch, search])
 
+    //comment
+
     return (
         <div className='search-parent'>
             <input
