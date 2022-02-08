@@ -26,10 +26,6 @@ const SingleLocation = () => {
     const [endDate, setEndDate] = useState(startDate);
 
     useEffect(() => {
-        console.log(endDate.getTimezoneOffset(),endDate, endDate.toJSON());
-    }, [startDate, endDate])
-
-    useEffect(() => {
         dispatch(loadReviewsThunk(location_id))
     },[dispatch])
 
